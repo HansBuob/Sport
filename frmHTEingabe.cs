@@ -304,7 +304,7 @@ namespace Sport
             {
                 var data = (HeimtrainerDaten)_rv.HtDaten[_rv.HtDaten.Count - 1];
                 tbBelastung.Text = data.Belastung.ToString();
-                tbDauer.Text = data.Dauer;
+                tbDauer.Text = data.Dauer.ToString();
 
                 tbBelastung.Text = data.Belastung.ToString();
                 tbDistanz.Text = data.Distanz.ToString();
@@ -318,7 +318,7 @@ namespace Sport
             var data = new HeimtrainerDaten();
             data.StringDatum = dtDatum.Value.ToString("yyyyMMdd"); ;
             data.Belastung = f.ConvertToDouble(tbBelastung.Text);
-            data.Dauer = tbDauer.Text;
+            data.Dauer = tbDauer.Text.ToDouble();
             //data.PulsschlagVor=f.ConvertToDouble(tbPulsschlagV.Text);
             //data.PulsschlagNach=f.ConvertToDouble(tbPulsschlagN.Text);
             data.Distanz = f.ConvertToDouble(tbDistanz.Text);

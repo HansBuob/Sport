@@ -91,7 +91,7 @@ namespace Sport
 
 				SetData(1, i, datum);//"Monat            Km     Std     Km/h     mal      ");
 
-				SetData(15, i, f.ConvertToDouble(jo.Dauer), 2);
+				SetData(15, i, jo.Dauer, 2);
 				if(jo.Position1!=0.0)
 					SetData(23, i, jo.Position1, 2);
 				if(jo.Position2!=0.0)

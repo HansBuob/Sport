@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Xml;
+using Newtonsoft.Json;
 using twr;
 using f = twr.DFunktionen;
 
@@ -45,39 +47,39 @@ namespace Sport
                 {
                     bFound = true;
                     if (rv.ZwischenZeit1 < b1)
-                        b1 = rv.ZwischenZeit1;
+                        b1 = rv.ZwischenZeit1.GetValueOrDefault();
                     if (rv.ZwischenZeit1 > w1)
-                        w1 = rv.ZwischenZeit1;
+                        w1 = rv.ZwischenZeit1.GetValueOrDefault();
 
                     if ((rv.ZwischenZeit2 - rv.ZwischenZeit1) < b2)
-                        b2 = rv.ZwischenZeit2 - rv.ZwischenZeit1;
+                        b2 = rv.ZwischenZeit2.GetValueOrDefault() - rv.ZwischenZeit1.GetValueOrDefault();
                     if ((rv.ZwischenZeit2 - rv.ZwischenZeit1) > w2)
-                        w2 = rv.ZwischenZeit2 - rv.ZwischenZeit1;
+                        w2 = rv.ZwischenZeit2.GetValueOrDefault() - rv.ZwischenZeit1.GetValueOrDefault();
 
                     if ((rv.ZwischenZeit3 - rv.ZwischenZeit2) < b3)
-                        b3 = rv.ZwischenZeit3 - rv.ZwischenZeit2;
+                        b3 = rv.ZwischenZeit3.GetValueOrDefault() - rv.ZwischenZeit2.GetValueOrDefault();
                     if ((rv.ZwischenZeit3 - rv.ZwischenZeit2) > w3)
-                        w3 = rv.ZwischenZeit3 - rv.ZwischenZeit2;
+                        w3 = rv.ZwischenZeit3.GetValueOrDefault() - rv.ZwischenZeit2.GetValueOrDefault();
 
                     if ((rv.ZwischenZeit4 - rv.ZwischenZeit3) < b4)
-                        b4 = rv.ZwischenZeit4 - rv.ZwischenZeit3;
+                        b4 = rv.ZwischenZeit4.GetValueOrDefault() - rv.ZwischenZeit3.GetValueOrDefault();
                     if ((rv.ZwischenZeit4 - rv.ZwischenZeit3) > w4)
-                        w4 = rv.ZwischenZeit4 - rv.ZwischenZeit3;
+                        w4 = rv.ZwischenZeit4.GetValueOrDefault() - rv.ZwischenZeit3.GetValueOrDefault();
 
                     if ((rv.ZwischenZeit5 - rv.ZwischenZeit4) < b5)
-                        b5 = rv.ZwischenZeit5 - rv.ZwischenZeit4;
+                        b5 = rv.ZwischenZeit5.GetValueOrDefault() - rv.ZwischenZeit4.GetValueOrDefault();
                     if ((rv.ZwischenZeit5 - rv.ZwischenZeit4) > w5)
-                        w5 = rv.ZwischenZeit5 - rv.ZwischenZeit4;
+                        w5 = rv.ZwischenZeit5.GetValueOrDefault() - rv.ZwischenZeit4.GetValueOrDefault();
 
                     if ((rv.ZwischenZeit6 - rv.ZwischenZeit5) < b6)
-                        b6 = rv.ZwischenZeit6 - rv.ZwischenZeit5;
+                        b6 = rv.ZwischenZeit6.GetValueOrDefault() - rv.ZwischenZeit5.GetValueOrDefault();
                     if ((rv.ZwischenZeit6 - rv.ZwischenZeit5) > w6)
-                        w6 = rv.ZwischenZeit6 - rv.ZwischenZeit5;
+                        w6 = rv.ZwischenZeit6.GetValueOrDefault() - rv.ZwischenZeit5.GetValueOrDefault();
 
-                    if ((rv.ZwischenZeit7 - rv.ZwischenZeit6) < b7)
-                        b7 = rv.ZwischenZeit7 - rv.ZwischenZeit6;
+                    if ((rv.ZwischenZeit7.GetValueOrDefault() - rv.ZwischenZeit6) < b7)
+                        b7 = rv.ZwischenZeit7.GetValueOrDefault() - rv.ZwischenZeit6.GetValueOrDefault();
                     if ((rv.ZwischenZeit7 - rv.ZwischenZeit6) > w7)
-                        w7 = rv.ZwischenZeit7 - rv.ZwischenZeit6;
+                        w7 = rv.ZwischenZeit7.GetValueOrDefault() - rv.ZwischenZeit6.GetValueOrDefault();
                 }
             }
 
@@ -149,7 +151,7 @@ namespace Sport
             }
         }
 
-        public void LoadRVDaten()
+        public void Load(bool useJsonFileFormat = false)
         {
             var ecpwin = System.Text.Encoding.GetEncoding(1252);
 
@@ -171,7 +173,10 @@ namespace Sport
                 sr.Close();
             }
 
-            pfad = this.Pfad + this.Jahr + "\\SD-" + this.Jahr + ".csv";
+            pfad = this.Pfad + this.Jahr + "\\SD.csv";
+            if (!File.Exists(pfad))
+                pfad = this.Pfad + this.Jahr + "\\SD-" + this.Jahr + ".csv";
+
             SdDaten.Clear();
             if (File.Exists(pfad))
             {
@@ -210,8 +215,6 @@ namespace Sport
             JoDaten.Clear();
             if (File.Exists(pfad))
             {
-                //_htJOStrecken = new Hashtable();
-
                 var sr = new StreamReader(File.OpenRead(pfad), ecpwin);
                 sr.BaseStream.Seek(0, SeekOrigin.Begin);
 
@@ -223,19 +226,24 @@ namespace Sport
                         break;
 
                     var tmp = htd.Strecke.ToLower().Trim();
-                    //if (!_htJOStrecken.ContainsKey(tmp))
-                    //    _htJOStrecken.Add(tmp, htd.Strecke);
-
                     JoDaten.Add(htd);
                 }
                 sr.Close();
             }
 
-            //pfad = this.Pfad + this.Jahr + "\\JO-" + this.Jahr + ".xml";
+            #region Load jo.xml, and save jo.json
+
             var jo_xml = this.Pfad + this.Jahr + "\\JO-" + this.Jahr + ".xml";
             if (!File.Exists(jo_xml))
                 jo_xml = this.Pfad + this.Jahr + "\\JO.xml";
-            if (File.Exists(jo_xml))
+
+            var jsonJoFile = jo_xml.Replace(".xml", ".json");
+            if (useJsonFileFormat && File.Exists(jsonJoFile))
+            {
+                var fileContent = File.ReadAllText(jsonJoFile, Encoding.UTF8);
+                this.JoDaten = JsonConvert.DeserializeObject<List<JoggenDaten>>(fileContent);
+            }
+            else if (File.Exists(jo_xml))
             {
                 var settings = new XmlReaderSettings();
                 settings.ConformanceLevel = ConformanceLevel.Fragment;
@@ -246,14 +254,26 @@ namespace Sport
                 var node = FindRoot(reader);
                 Serialize(node, "JO");
                 reader.Close();
+
+                var jsonString = JsonConvert.SerializeObject(this.JoDaten, Newtonsoft.Json.Formatting.Indented);
+                File.WriteAllText(jsonJoFile, jsonString, Encoding.UTF8);
             }
+
+            #endregion
+
+            #region Load ht.xml, and save ht.json
 
             var ht_xml = this.Pfad + this.Jahr + "\\HT-" + this.Jahr + ".xml";
             if (!File.Exists(ht_xml))
                 ht_xml = this.Pfad + this.Jahr + "\\HT.xml";
 
-            //pfad = this.Pfad + this.Jahr + "\\HT-" + this.Jahr + ".xml";
-            if (File.Exists(ht_xml))
+            var jsonHtFile = ht_xml.Replace(".xml", ".json");
+            if (useJsonFileFormat && File.Exists(jsonHtFile))
+            {
+                var fileContent = File.ReadAllText(jsonHtFile, Encoding.UTF8);
+                this.HtDaten = JsonConvert.DeserializeObject<List<HeimtrainerDaten>>(fileContent);
+            }
+            else if (File.Exists(ht_xml))
             {
                 var settings = new XmlReaderSettings();
                 settings.ConformanceLevel = ConformanceLevel.Fragment;
@@ -264,13 +284,26 @@ namespace Sport
                 var node = FindRoot(reader);
                 Serialize(node, "HT");
                 reader.Close();
+
+                var jsonString = JsonConvert.SerializeObject(this.HtDaten, Newtonsoft.Json.Formatting.Indented);
+                File.WriteAllText(jsonHtFile, jsonString, Encoding.UTF8);
             }
+
+            #endregion
+
+            #region Load rv.xml and save rv.json
 
             var rv_xml = this.Pfad + this.Jahr + "\\RV-" + this.Jahr + ".xml";
             if (!File.Exists(rv_xml))
                 rv_xml = this.Pfad + this.Jahr + "\\RV.xml";
 
-            if (File.Exists(rv_xml))
+            var jsonRvFile = rv_xml.Replace(".xml", ".json");
+            if (useJsonFileFormat && File.Exists(jsonRvFile))
+            {
+                var fileContent = File.ReadAllText(jsonRvFile, Encoding.UTF8);
+                this.RvDaten = JsonConvert.DeserializeObject<List<RVDaten>>(fileContent);
+            }
+            else if (File.Exists(rv_xml))
             {
                 var settings = new XmlReaderSettings();
                 settings.ConformanceLevel = ConformanceLevel.Fragment;
@@ -281,7 +314,12 @@ namespace Sport
                 var node = FindRoot(reader);
                 Serialize(node, "RV");
                 reader.Close();
+
+                var jsonString = JsonConvert.SerializeObject(this.RvDaten, Newtonsoft.Json.Formatting.Indented);
+                File.WriteAllText(jsonRvFile, jsonString, Encoding.UTF8);
             }
+
+            #endregion
         }
 
         public XmlNode FindRoot(XmlReader reader)

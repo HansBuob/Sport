@@ -89,7 +89,7 @@ namespace Sport
 				var datum=heimtrainerDaten.StringDatum.Substring(6, 2) + "." + heimtrainerDaten.StringDatum.Substring(4, 2) + "." + heimtrainerDaten.StringDatum.Substring(0, 4);
 				SetData(1, i, datum);//"Monat            Km     Std     Km/h     mal      ");
 				SetData(16, i, heimtrainerDaten.Belastung,1);
-				SetData(25, i, f.ConvertToDouble(heimtrainerDaten.Dauer),2);
+				SetData(25, i, heimtrainerDaten.Dauer,2);
 				//if(ht.PulsschlagVor!=0.0)
 				//{
 				//    SetData(34, i, ht.PulsschlagVor,0);
@@ -97,12 +97,12 @@ namespace Sport
 				//    SetData(38, i, ht.PulsschlagNach,0);
 				//}
 				SetData(44, i, heimtrainerDaten.Distanz,1);
-				SetData(52, i, 60*heimtrainerDaten.Distanz/f.ConvertToDouble(heimtrainerDaten.Dauer),2);
+				SetData(52, i, 60*heimtrainerDaten.Distanz/heimtrainerDaten.Dauer,2);
 				SetData(65, i, heimtrainerDaten.KJoul,0);
 				SetData(71, i, heimtrainerDaten.KJoul/4.186,0);
 				SetData(78, i, heimtrainerDaten.Gewicht,1);
 
-				tZeit+=f.ConvertToDouble(heimtrainerDaten.Dauer);
+				tZeit+=heimtrainerDaten.Dauer;
 				tKm+=heimtrainerDaten.Distanz;
 				tKJoul+=heimtrainerDaten.KJoul;
 			}

@@ -62,43 +62,44 @@ namespace Sport
             this.cmdOK = new System.Windows.Forms.Button();
             this.lblDatei = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            //
+            // 
             // label1
-            //
+            // 
             this.label1.Location = new System.Drawing.Point(5, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(515, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Wählen Sie aus mit welcher Datei das Programm gestartet werden soll.";
-            //
+            // 
             // lbDatei
-            //
+            // 
             this.lbDatei.Location = new System.Drawing.Point(3, 36);
             this.lbDatei.Name = "lbDatei";
             this.lbDatei.Size = new System.Drawing.Size(517, 134);
             this.lbDatei.TabIndex = 1;
-            this.lbDatei.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
             this.lbDatei.DoubleClick += new System.EventHandler(this.OnDoubleKlick);
-            //
+            this.lbDatei.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
+            // 
             // cmdOK
-            //
+            // 
             this.cmdOK.Location = new System.Drawing.Point(452, 224);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(68, 22);
             this.cmdOK.TabIndex = 2;
             this.cmdOK.Text = "Ok";
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
-            //
+            // 
             // lblDatei
-            //
+            // 
             this.lblDatei.Location = new System.Drawing.Point(5, 184);
             this.lblDatei.Name = "lblDatei";
             this.lblDatei.Size = new System.Drawing.Size(515, 36);
             this.lblDatei.TabIndex = 3;
             this.lblDatei.Text = "label2";
-            //
+            this.lblDatei.Click += new System.EventHandler(this.lblDatei_Click);
+            // 
             // frmDatei
-            //
+            // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(522, 249);
             this.Controls.Add(this.lblDatei);
@@ -110,6 +111,7 @@ namespace Sport
             this.Text = "Datei";
             this.Load += new System.EventHandler(this.frmDatei_Load);
             this.ResumeLayout(false);
+
         }
 
         #endregion
@@ -120,7 +122,7 @@ namespace Sport
 
             var finder = new DFileFind();
             //			finder.FindFiles(Settings._DataPfad, "RV-*.csv", 0);
-            finder.FindFiles(Settings._DataPfad, "*-*.csv", 1);
+            finder.FindFiles(Settings._DataPfad, "*.csv", 1);
             finder.ArrFiles.Sort();
 
             //			lbDatei.Sorted=true;
@@ -185,6 +187,11 @@ namespace Sport
         {
             if (e.KeyData == Keys.Enter)
                 cmdOK_Click(null, null);
+        }
+
+        private void lblDatei_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

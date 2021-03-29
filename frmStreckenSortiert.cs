@@ -67,7 +67,7 @@ namespace Sport
             var lrv = new Sport();
             lrv.Jahr = (f.ConvertToInt(Settings._Jahr) - 1).ToString();
             lrv.Pfad = Settings._DataPfad;
-            lrv.LoadRVDaten();
+            lrv.Load();
 
             //SetColor(1,0,100, Color.FromArgb(255,180,80));
             //SetData(1, 0, "Zeit1   ZW1-2  Zeit2   ZW2-3  Zeit3   ZW3-4  Zeit4   ZW4-5  Zeit5   ZW5-6  ");
@@ -166,49 +166,49 @@ namespace Sport
                     if (rv.ZwischenZeit1 == b1) color = best;
                     if (rv.ZwischenZeit1 == w1) color = worst;
 
-                    SetData(3, 1 + add + i, rv.ZwischenZeit1, 2, color);
+                    SetData(3, 1 + add + i, rv.ZwischenZeit1.GetValueOrDefault(), 2, color);
 
                     color = Color.Black;
                     if (rv.ZwischenZeit2 - rv.ZwischenZeit1 == b2) color = best;
                     if (rv.ZwischenZeit2 - rv.ZwischenZeit1 == w2) color = worst;
-                    SetData(11, 1 + add + i, rv.ZwischenZeit2 - rv.ZwischenZeit1, 2, color);
-                    SetData(18, 1 + add + i, rv.ZwischenZeit2, 2);
+                    SetData(11, 1 + add + i, rv.ZwischenZeit2.GetValueOrDefault() - rv.ZwischenZeit1.GetValueOrDefault(), 2, color);
+                    SetData(18, 1 + add + i, rv.ZwischenZeit2.GetValueOrDefault(), 2);
 
                     color = Color.Black;
                     if (rv.ZwischenZeit3 - rv.ZwischenZeit2 == b3) color = best;
                     if (rv.ZwischenZeit3 - rv.ZwischenZeit2 == w3) color = worst;
-                    SetData(26, 1 + add + i, rv.ZwischenZeit3 - rv.ZwischenZeit2, 2, color);
-                    SetData(33, 1 + add + i, rv.ZwischenZeit3, 2);
+                    SetData(26, 1 + add + i, rv.ZwischenZeit3.GetValueOrDefault() - rv.ZwischenZeit2.GetValueOrDefault(), 2, color);
+                    SetData(33, 1 + add + i, rv.ZwischenZeit3.GetValueOrDefault(), 2);
 
                     color = Color.Black;
                     if (rv.ZwischenZeit4 - rv.ZwischenZeit3 == b4) color = best;
                     if (rv.ZwischenZeit4 - rv.ZwischenZeit3 == w4) color = worst;
 
-                    SetData(41, 1 + add + i, rv.ZwischenZeit4 - rv.ZwischenZeit3, 2, color);
-                    SetData(48, 1 + add + i, rv.ZwischenZeit4, 2);
+                    SetData(41, 1 + add + i, rv.ZwischenZeit4.GetValueOrDefault() - rv.ZwischenZeit3.GetValueOrDefault(), 2, color);
+                    SetData(48, 1 + add + i, rv.ZwischenZeit4.GetValueOrDefault(), 2);
                     if (rv.ZwischenZeit5 > 0.0)
                     {
                         color = Color.Black;
                         if (rv.ZwischenZeit5 - rv.ZwischenZeit4 == b5) color = best;
                         if (rv.ZwischenZeit5 - rv.ZwischenZeit4 == w5) color = worst;
-                        SetData(56, 1 + add + i, rv.ZwischenZeit5 - rv.ZwischenZeit4, 2, color);
-                        SetData(63, 1 + add + i, rv.ZwischenZeit5, 2);
+                        SetData(56, 1 + add + i, rv.ZwischenZeit5.GetValueOrDefault() - rv.ZwischenZeit4.GetValueOrDefault(), 2, color);
+                        SetData(63, 1 + add + i, rv.ZwischenZeit5.GetValueOrDefault(), 2);
                     }
                     if (rv.ZwischenZeit6 > 0.0)
                     {
                         color = Color.Black;
                         if (rv.ZwischenZeit6 - rv.ZwischenZeit5 == b6) color = best;
                         if (rv.ZwischenZeit6 - rv.ZwischenZeit5 == w6) color = worst;
-                        SetData(71, 1 + add + i, rv.ZwischenZeit6 - rv.ZwischenZeit5, 2, color);
-                        SetData(78, 1 + add + i, rv.ZwischenZeit6, 2);
+                        SetData(71, 1 + add + i, rv.ZwischenZeit6.GetValueOrDefault() - rv.ZwischenZeit5.GetValueOrDefault(), 2, color);
+                        SetData(78, 1 + add + i, rv.ZwischenZeit6.GetValueOrDefault(), 2);
                     }
-                    if (rv.ZwischenZeit7 > 0)
+                    if (rv.ZwischenZeit7!=null)
                     {
                         color = Color.Black;
                         if (rv.ZwischenZeit7 - rv.ZwischenZeit6 == b7) color = best;
                         if (rv.ZwischenZeit7 - rv.ZwischenZeit6 == w7) color = worst;
-                        SetData(86, 1 + add + i, rv.ZwischenZeit7, 2);
-                        SetData(93, 1 + add + i, rv.ZwischenZeit7 - rv.ZwischenZeit6, 2, color);
+                        SetData(86, 1 + add + i, rv.ZwischenZeit7.Value, 2);
+                        SetData(93, 1 + add + i, rv.ZwischenZeit7.GetValueOrDefault() - rv.ZwischenZeit6.GetValueOrDefault(), 2, color);
                     }
                     //SetData(52, 3+ add+i, rv.ZwischenZeit7, 2);
                     add++;

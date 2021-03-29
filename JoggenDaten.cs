@@ -10,7 +10,7 @@ namespace Sport
     {
         private string _Strecke;
 
-        public override string Dauer
+        public override double Dauer
         {
             get
             {
@@ -39,7 +39,7 @@ namespace Sport
                 if (time == 0.0)
                     time = Position1;
 
-                return time.ToString();
+                return time;
             }
             set
             {
@@ -47,6 +47,13 @@ namespace Sport
             }
         }
 
+
+        public string Bemerkung { get; set; }
+
+
+        public double Peace { get; set; }
+
+        public string Link { get; set; }
         /*
                 _Strecke=_Strecke.Trim();
                 if(_Strecke.Length>0)
@@ -177,7 +184,7 @@ again:
                 this.Gewicht = f.HeadFromList(ref str, ",").ToDouble();
                 tmp = f.HeadFromList(ref str, ",");
                 Strecke = tmp.Replace("{K}", ",");
-                this.Dauer = f.HeadFromList(ref str, ",");
+                this.Dauer = f.HeadFromList(ref str, ",").ToDouble();
                 var G1 = f.HeadFromList(ref str, ",").ToDouble();
                 var W1 = f.HeadFromList(ref str, ",").ToDouble();
 

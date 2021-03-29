@@ -739,7 +739,7 @@ namespace Sport
 //			_rv.Jahr=Settings._Jahr;
 //			_rv.Pfad=Settings._DataPfad;
 
-//			_rv.LoadRVDaten();
+//			_rv.Load();
 
 			
 			dtDatum.Value=dtDatum.Value.AddYears(f.ConvertToInt(Settings._Jahr)-dtDatum.Value.Year);

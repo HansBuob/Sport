@@ -283,7 +283,7 @@ namespace Sport
                 for (var i = 0; i < _rv.HtDaten.Count; i++)
                 {
                     var ht = (HeimtrainerDaten)_rv.HtDaten[i];
-                    tzeit += f.ConvertToDouble(ht.Dauer);
+                    tzeit += ht.Dauer;
                     tkm += ht.Distanz;
                     tkcal += ht.KJoul / 4.186;
 
@@ -320,7 +320,7 @@ namespace Sport
                 for (var i = 0; i < _rv.JoDaten.Count; i++)
                 {
                     var jo = (JoggenDaten)_rv.JoDaten[i];
-                    tzeit += f.ConvertToDouble(jo.Dauer);
+                    tzeit += jo.Dauer;
                     //				tkm+=ht.Distanz;
                 }
                 tkm = tzeit / 60 * 12;//12 Km/h

@@ -31,7 +31,7 @@ namespace Sport
                 else if (dataNode.LocalName.ToLower() == "Belastung".ToLower())
                     this.Belastung = dataNode.InnerXml.ToDouble();
                 else if (dataNode.LocalName.ToLower() == "Dauer".ToLower())
-                    Dauer = dataNode.InnerXml;
+                    Dauer = dataNode.InnerXml.ToDouble();
                 else if (dataNode.LocalName.ToLower() == "Distanz".ToLower())
                     this.Distanz = dataNode.InnerXml.ToDouble();
                 else if (dataNode.LocalName.ToLower() == "KJoul".ToLower())
@@ -69,7 +69,7 @@ again:
                 this.StringDatum = f.HeadFromList(ref str, ",");
                 this.Gewicht = f.HeadFromList(ref str, ",").ToDouble();
                 this.Belastung = f.HeadFromList(ref str, ",").ToDouble();
-                Dauer = f.HeadFromList(ref str, ",");
+                Dauer = f.HeadFromList(ref str, ",").ToDouble();
                 //_PulsschlagVor =
                 f.HeadFromList(ref str, ",");
                 //_PulsschlagNach =

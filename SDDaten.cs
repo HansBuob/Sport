@@ -1,21 +1,15 @@
 ﻿using System.IO;
+using twr.common;
 using f = twr.DFunktionen;
 
 namespace Sport
 {
     public class SDDaten
     {
-        public SDDaten()
-        {
-        }
-
-        //	public SDDaten(string Strecke){}
-
         public bool Serialize(object stream)
         {
-            if (stream is StreamReader)
+            if (stream is StreamReader sr)
             {
-                var sr = (StreamReader)stream;
                 var data = sr.ReadLine();
                 if (data == null)
                     return false;
@@ -44,19 +38,18 @@ namespace Sport
                 f.HeadFromList(ref str, ",");
                 f.HeadFromList(ref str, ",");
                 f.HeadFromList(ref str, ",");
-                _ZwischenDistanz1 = f.HeadFromList(ref str, ",");
-                _ZwischenDistanz2 = f.HeadFromList(ref str, ",");
-                _ZwischenDistanz3 = f.HeadFromList(ref str, ",");
-                _ZwischenDistanz4 = f.HeadFromList(ref str, ",");
-                _ZwischenDistanz5 = f.HeadFromList(ref str, ",");
-                _ZwischenDistanz6 = f.HeadFromList(ref str, ",");
-                _ZwischenDistanz7 = f.HeadFromList(ref str, ",");
+                _ZwischenDistanz1 = f.HeadFromList(ref str, ",").ToDouble();
+                _ZwischenDistanz2 = f.HeadFromList(ref str, ",").ToDouble();
+                _ZwischenDistanz3 = f.HeadFromList(ref str, ",").ToDouble();
+                _ZwischenDistanz4 = f.HeadFromList(ref str, ",").ToDouble();
+                _ZwischenDistanz5 = f.HeadFromList(ref str, ",").ToDouble();
+                _ZwischenDistanz6 = f.HeadFromList(ref str, ",").ToDouble();
+                _ZwischenDistanz7 = f.HeadFromList(ref str, ",").ToDouble();
 
                 return true;
             }
-            if (stream is StreamWriter)
+            if (stream is StreamWriter sw)
             {
-                var sw = (StreamWriter)stream;
                 return true;
             }
 
@@ -71,24 +64,12 @@ namespace Sport
             return false;
         }
 
-        public long Anzeige
-        {
-            get
-            {
-                return _Anzeige;
-            }
-        }
+        public long Anzeige => _Anzeige;
 
         public string Rundfahrt
         {
-            get
-            {
-                return _Rundfahrt;
-            }
-            set
-            {
-                _Rundfahrt = value;
-            }
+            get => _Rundfahrt;
+            set => _Rundfahrt = value;
         }
 
         public string ZwischenOrt1
@@ -151,7 +132,7 @@ namespace Sport
         {
             get
             {
-                return f.ConvertToDouble(_ZwischenDistanz1);
+                return _ZwischenDistanz1;
             }
         }
 
@@ -159,7 +140,7 @@ namespace Sport
         {
             get
             {
-                return f.ConvertToDouble(_ZwischenDistanz2);
+                return _ZwischenDistanz2;
             }
         }
 
@@ -167,7 +148,7 @@ namespace Sport
         {
             get
             {
-                return f.ConvertToDouble(_ZwischenDistanz3);
+                return _ZwischenDistanz3;
             }
         }
 
@@ -175,7 +156,7 @@ namespace Sport
         {
             get
             {
-                return f.ConvertToDouble(_ZwischenDistanz4);
+                return _ZwischenDistanz4;
             }
         }
 
@@ -183,7 +164,7 @@ namespace Sport
         {
             get
             {
-                return f.ConvertToDouble(_ZwischenDistanz5);
+                return _ZwischenDistanz5;
             }
         }
 
@@ -191,7 +172,7 @@ namespace Sport
         {
             get
             {
-                return f.ConvertToDouble(_ZwischenDistanz6);
+                return _ZwischenDistanz6;
             }
         }
 
@@ -199,7 +180,7 @@ namespace Sport
         {
             get
             {
-                return f.ConvertToDouble(_ZwischenDistanz7);
+                return _ZwischenDistanz7;
             }
         }
 
@@ -215,13 +196,20 @@ namespace Sport
         {
             get
             {
-                if (f.ConvertToDouble(_ZwischenDistanz7) != 0.0) return f.ConvertToDouble(_ZwischenDistanz7);
-                if (f.ConvertToDouble(_ZwischenDistanz6) != 0.0) return f.ConvertToDouble(_ZwischenDistanz6);
-                if (f.ConvertToDouble(_ZwischenDistanz5) != 0.0) return f.ConvertToDouble(_ZwischenDistanz5);
-                if (f.ConvertToDouble(_ZwischenDistanz4) != 0.0) return f.ConvertToDouble(_ZwischenDistanz4);
-                if (f.ConvertToDouble(_ZwischenDistanz3) != 0.0) return f.ConvertToDouble(_ZwischenDistanz3);
-                if (f.ConvertToDouble(_ZwischenDistanz2) != 0.0) return f.ConvertToDouble(_ZwischenDistanz2);
-                if (f.ConvertToDouble(_ZwischenDistanz1) != 0.0) return f.ConvertToDouble(_ZwischenDistanz1);
+                if (_ZwischenDistanz7 != 0.0)
+                    return _ZwischenDistanz7;
+                if (_ZwischenDistanz6 != 0.0)
+                    return _ZwischenDistanz6;
+                if (_ZwischenDistanz5 != 0.0)
+                    return _ZwischenDistanz5;
+                if (_ZwischenDistanz4 != 0.0)
+                    return _ZwischenDistanz4;
+                if (_ZwischenDistanz3 != 0.0)
+                    return _ZwischenDistanz3;
+                if (_ZwischenDistanz2 != 0.0)
+                    return _ZwischenDistanz2;
+                if (_ZwischenDistanz1 != 0.0)
+                    return _ZwischenDistanz1;
 
                 return 0.0;
             }
@@ -238,12 +226,12 @@ namespace Sport
         private string _ZwischenOrt6;
         private string _ZwischenOrt7;
 
-        private string _ZwischenDistanz1;
-        private string _ZwischenDistanz2;
-        private string _ZwischenDistanz3;
-        private string _ZwischenDistanz4;
-        private string _ZwischenDistanz5;
-        private string _ZwischenDistanz6;
-        private string _ZwischenDistanz7;
+        private double _ZwischenDistanz1;
+        private double _ZwischenDistanz2;
+        private double _ZwischenDistanz3;
+        private double _ZwischenDistanz4;
+        private double _ZwischenDistanz5;
+        private double _ZwischenDistanz6;
+        private double _ZwischenDistanz7;
     }
 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>8.0.30729</ProductVersion>
@@ -27,7 +27,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -68,6 +68,7 @@
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -92,6 +93,7 @@
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -118,6 +120,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DataGridTableStyleExtension.cs" />
+    <Compile Include="Form\frmProtokollRennvelo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RVDaten.cs" />
     <Compile Include="SDDaten.cs" />
     <Compile Include="SportDaten.cs" />
@@ -125,43 +131,43 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="frmDatei.cs">
+    <Compile Include="Form\frmDatei.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExcelInfo.cs">
+    <Compile Include="FormPaintProtokoll\frmExcelInfoPaintProtokoll.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGProtokoll.cs">
+    <Compile Include="Form\frmGProtokoll.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmHTEingabe.cs">
+    <Compile Include="Form\frmHTEingabe.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmJOEingabe.cs">
+    <Compile Include="Form\frmJOEingabe.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmKalender.cs">
+    <Compile Include="Form\frmKalender.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="Form\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmProtokoll.cs">
+    <Compile Include="Form\frmProtokoll.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmProtokollHomeTrainer.cs">
+    <Compile Include="FormPaintProtokoll\frmProtokollHomeTrainerPaintProtokoll.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmProtokollJoggen.cs">
+    <Compile Include="FormPaintProtokoll\frmProtokollJoggenPaintProtokoll.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmProtokollOhneGrid.cs">
+    <Compile Include="Form\frmProtokollOhneGrid.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRVEingabe.cs">
+    <Compile Include="Form\frmRVEingabe.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmStreckenSortiert.cs">
+    <Compile Include="FormPaintProtokoll\frmStreckenSortiertPaintProtokoll.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HeimtrainerDaten.cs" />
@@ -172,45 +178,48 @@
     <Compile Include="Settings.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="frmDatei.resx">
+    <EmbeddedResource Include="Form\frmDatei.resx">
       <DependentUpon>frmDatei.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExcelInfo.resx">
-      <DependentUpon>frmExcelInfo.cs</DependentUpon>
+    <EmbeddedResource Include="FormPaintProtokoll\frmExcelInfoPaintProtokoll.resx">
+      <DependentUpon>frmExcelInfoPaintProtokoll.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGProtokoll.resx">
+    <EmbeddedResource Include="Form\frmGProtokoll.resx">
       <DependentUpon>frmGProtokoll.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmHTEingabe.resx">
+    <EmbeddedResource Include="Form\frmHTEingabe.resx">
       <DependentUpon>frmHTEingabe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmJOEingabe.resx">
+    <EmbeddedResource Include="Form\frmJOEingabe.resx">
       <DependentUpon>frmJOEingabe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmKalender.resx">
+    <EmbeddedResource Include="Form\frmKalender.resx">
       <DependentUpon>frmKalender.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
+    <EmbeddedResource Include="Form\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmProtokoll.resx">
+    <EmbeddedResource Include="Form\frmProtokoll.resx">
       <DependentUpon>frmProtokoll.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmProtokollHomeTrainer.resx">
-      <DependentUpon>frmProtokollHomeTrainer.cs</DependentUpon>
+    <EmbeddedResource Include="FormPaintProtokoll\frmProtokollHomeTrainerPaintProtokoll.resx">
+      <DependentUpon>frmProtokollHomeTrainerPaintProtokoll.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmProtokollJoggen.resx">
-      <DependentUpon>frmProtokollJoggen.cs</DependentUpon>
+    <EmbeddedResource Include="FormPaintProtokoll\frmProtokollJoggenPaintProtokoll.resx">
+      <DependentUpon>frmProtokollJoggenPaintProtokoll.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmProtokollOhneGrid.resx">
+    <EmbeddedResource Include="Form\frmProtokollOhneGrid.resx">
       <DependentUpon>frmProtokollOhneGrid.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRVEingabe.resx">
+    <EmbeddedResource Include="Form\frmProtokollRennvelo.resx">
+      <DependentUpon>frmProtokollRennvelo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmRVEingabe.resx">
       <DependentUpon>frmRVEingabe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmStreckenSortiert.resx">
-      <DependentUpon>frmStreckenSortiert.cs</DependentUpon>
+    <EmbeddedResource Include="FormPaintProtokoll\frmStreckenSortiertPaintProtokoll.resx">
+      <DependentUpon>frmStreckenSortiertPaintProtokoll.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +249,7 @@
       <Name>TWRLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

@@ -5,11 +5,11 @@ using f = twr.DFunktionen;
 
 namespace Sport
 {
-    public class frmStreckenSortiert : frmPaintProtokoll//frmGProtokoll//Sport.frmProtokollOhneGrid
+    public class frmStreckenSortiertPaintProtokoll : frmPaintProtokoll//frmGProtokoll//Sport.frmProtokollOhneGrid
     {
         private System.ComponentModel.IContainer components = null;
 
-        public frmStreckenSortiert()
+        public frmStreckenSortiertPaintProtokoll()
         {
             // This call is required by the Windows Form Designer.
             InitializeComponent();
@@ -62,11 +62,11 @@ namespace Sport
             //			this.Text="Zwischenzeiten sortiert nach Strecken";
 
             this.Text = "Liste ausgeben (Eingegebene Strecken)";
-            this.Text += " (" + Settings._Jahr + ")";
+            this.Text += " (" + Settings.Jahr + ")";
 
             var lrv = new Sport();
-            lrv.Jahr = (f.ConvertToInt(Settings._Jahr) - 1).ToString();
-            lrv.Pfad = Settings._DataPfad;
+            lrv.Jahr = (f.ConvertToInt(Settings.Jahr) - 1).ToString();
+            lrv.Pfad = Settings.DataDirectory;
             lrv.Load();
 
             //SetColor(1,0,100, Color.FromArgb(255,180,80));
@@ -94,7 +94,7 @@ namespace Sport
 
             for (var i = 0; i < _rv.SdDaten.Count; i++)
             {
-                var sd = (SDDaten)_rv.SdDaten[i];
+                var sd = _rv.SdDaten[i];
                 SetData(1, i + add, sd.ZwischenOrt1);
                 SetData(16, i + add, sd.ZwischenOrt2);
                 SetData(31, i + add, sd.ZwischenOrt3);
@@ -115,7 +115,7 @@ namespace Sport
                         if (!_rv.RVBest(sd.Strecke, out b1, out w1, out b2, out w2, out b3, out w3, out b4, out w4, out b5, out w5, out b6, out w6, out b7, out w7))
                             _rv.RVBest(sd.Rundfahrt, out b1, out w1, out b2, out w2, out b3, out w3, out b4, out w4, out b5, out w5, out b6, out w6, out b7, out w7);
 
-                    var rv = (RVDaten)_rv.RvDaten[s];
+                    var rv = _rv.RvDaten[s];
 
                     if (rv.Strecke != sd.Strecke)
                     {
@@ -202,7 +202,7 @@ namespace Sport
                         SetData(71, 1 + add + i, rv.ZwischenZeit6.GetValueOrDefault() - rv.ZwischenZeit5.GetValueOrDefault(), 2, color);
                         SetData(78, 1 + add + i, rv.ZwischenZeit6.GetValueOrDefault(), 2);
                     }
-                    if (rv.ZwischenZeit7!=null)
+                    if (rv.ZwischenZeit7 != null)
                     {
                         color = Color.Black;
                         if (rv.ZwischenZeit7 - rv.ZwischenZeit6 == b7) color = best;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
@@ -9,20 +10,8 @@ namespace Sport
     /// <summary>
     /// Summary description for frmGProtokoll.
     /// </summary>
-    public class frmGProtokoll : frmForm//:*/ System.Windows.Forms.Form
+    public class frmGProtokoll : frmForm
     {
-        public class SColor
-        {
-            public SColor()
-            {
-            }
-
-            public int _x = 0;
-            public int _y = 0;
-            public int _l = 0;
-            public System.Drawing.Color _color;
-        }
-
         private System.ComponentModel.IContainer components;
 
         public frmGProtokoll()
@@ -147,8 +136,6 @@ namespace Sport
         private System.Windows.Forms.ToolBarButton toolBarButton3;
         private System.Windows.Forms.ImageList imageList;
 
-        private Sport _rv = new Sport();
-
         private int _FontSize = 10;
         private int _AnzZeilen = 30;
         private System.Windows.Forms.ToolBarButton toolBarButton4;
@@ -159,7 +146,7 @@ namespace Sport
         }
 
         private ArrayList _aData = new ArrayList();
-        private ArrayList _aColor = new ArrayList();
+        //private ArrayList _aColor = new ArrayList();
 
         public void SetData(int x, int y, double data, int anzZeichen)
         {
@@ -175,7 +162,7 @@ namespace Sport
                 str = data.ToString(format);
             }
 
-            var pos = str.IndexOf(".");
+            var pos = str.IndexOf(".", StringComparison.Ordinal);
             if (pos != -1)
             {
                 var leer = "            ";
@@ -198,7 +185,7 @@ namespace Sport
 
             var tmp = _aData[y].ToString();
 
-            var pos = data.IndexOf(".");
+            var pos = data.IndexOf(".", StringComparison.Ordinal);
             if (pos != -1)
             {
                 if (x > pos)
@@ -215,11 +202,6 @@ namespace Sport
         private string _Titel = "";
         private Color _TitelColor;
 
-        public void SetTitel(string titel)
-        {
-            SetTitel(titel, Color.FromArgb(255, 180, 80));
-        }
-
         public void SetTitel(string titel, Color color)
         {
             _Titel = titel;
@@ -229,30 +211,7 @@ namespace Sport
 
         private int _Start = 0;
 
-        public void SetColor(int x, int y, int l, Color color)
-        {
-            var tcolor = new SColor();
-            tcolor._x = x;
-            tcolor._y = y;
-            tcolor._l = l;
-            tcolor._color = color;
-
-            _aColor.Add(tcolor);
-
-            //_aColor.Add(x.ToString() + "-" + y.ToString()
-
-            //			for(int i=_aData.Count;i<(y+1);i++)
-            //				_aData.Add("                                                                                                                           ");
-
-            //			string tmp=_aData[y].ToString();
-
-            //			string start=tmp.Substring(0,x);
-            //			tmp=tmp.Substring(x+data.Length);
-
-            //			_aData[y]=start + data + tmp;
-        }
-
-        static public int MeasureDisplayStringWidth(Graphics graphics, string text,
+        public static int MeasureDisplayStringWidth(Graphics graphics, string text,
             Font font)
         {
             const int width = 32;
@@ -304,7 +263,7 @@ namespace Sport
 
             var font = new Font("Courier New", _FontSize);
 
-            var diff = MeasureDisplayStringWidth(e.Graphics, "ii", font) - MeasureDisplayStringWidth(e.Graphics, "i", font);
+            //var diff = MeasureDisplayStringWidth(e.Graphics, "ii", font) - MeasureDisplayStringWidth(e.Graphics, "i", font);
             var fontHeight = (int)e.Graphics.MeasureString("i", font).Height;
             //			ww=MeasureDisplayStringWidth(e.Graphics, "w", font);
 
@@ -381,7 +340,7 @@ namespace Sport
         {
             OnInitial();
             var dialogname = this.Text;
-            if (dialogname.IndexOf("(") != -1)
+            if (dialogname.IndexOf("(", StringComparison.Ordinal) != -1)
                 dialogname = f.HeadFromList(ref dialogname, "(");
 
             var reg = new DRegistry();
@@ -414,11 +373,11 @@ namespace Sport
             if (this.WindowState != FormWindowState.Normal)
                 return;
 
-            if (Settings._IsMdiLayout)
+            if (Settings.IsMdiLayout)
                 return;
 
             var dialogname = this.Text;
-            if (dialogname.IndexOf("(") != -1)
+            if (dialogname.IndexOf("(", StringComparison.Ordinal) != -1)
                 dialogname = f.HeadFromList(ref dialogname, "(");
 
             var reg = new DRegistry();
@@ -455,14 +414,6 @@ namespace Sport
             lbwork.Invalidate();
 
             base.OnMouseWheel(e);
-        }
-
-        public Sport setRV
-        {
-            set
-            {
-                _rv = value;
-            }
         }
     }
 }

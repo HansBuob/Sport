@@ -1,16 +1,14 @@
-using System;
-using System.Collections;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
-
 using twr;
-using f = twr.DFunktionen;
 
 namespace Sport
 {
     /// <summary>
     /// Summary description for frmDatei.
     /// </summary>
-    public class frmDatei : frmForm//: System.Windows.Forms.Form
+    public class frmDatei : frmForm
     {
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbDatei;
@@ -62,44 +60,43 @@ namespace Sport
             this.cmdOK = new System.Windows.Forms.Button();
             this.lblDatei = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Location = new System.Drawing.Point(5, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(515, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Wählen Sie aus mit welcher Datei das Programm gestartet werden soll.";
-            // 
+            //
             // lbDatei
-            // 
+            //
             this.lbDatei.Location = new System.Drawing.Point(3, 36);
             this.lbDatei.Name = "lbDatei";
             this.lbDatei.Size = new System.Drawing.Size(517, 134);
             this.lbDatei.TabIndex = 1;
             this.lbDatei.DoubleClick += new System.EventHandler(this.OnDoubleKlick);
             this.lbDatei.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
-            // 
+            //
             // cmdOK
-            // 
+            //
             this.cmdOK.Location = new System.Drawing.Point(452, 224);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(68, 22);
             this.cmdOK.TabIndex = 2;
             this.cmdOK.Text = "Ok";
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
-            // 
+            //
             // lblDatei
-            // 
+            //
             this.lblDatei.Location = new System.Drawing.Point(5, 184);
             this.lblDatei.Name = "lblDatei";
             this.lblDatei.Size = new System.Drawing.Size(515, 36);
             this.lblDatei.TabIndex = 3;
             this.lblDatei.Text = "label2";
-            this.lblDatei.Click += new System.EventHandler(this.lblDatei_Click);
-            // 
+            //
             // frmDatei
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(522, 249);
             this.Controls.Add(this.lblDatei);
@@ -111,55 +108,22 @@ namespace Sport
             this.Text = "Datei";
             this.Load += new System.EventHandler(this.frmDatei_Load);
             this.ResumeLayout(false);
-
         }
 
         #endregion
 
         private void frmDatei_Load(object sender, System.EventArgs e)
         {
-            lblDatei.Text = Settings._DataPfad;
+            lblDatei.Text = Settings.DataDirectory;
 
-            var finder = new DFileFind();
-            //			finder.FindFiles(Settings._DataPfad, "RV-*.csv", 0);
-            finder.FindFiles(Settings._DataPfad, "*.csv", 1);
-            finder.ArrFiles.Sort();
-
-            //			lbDatei.Sorted=true;
-            var add = false;
-
-            var arr = new ArrayList();
-
-            for (var i = 0; i < finder.ArrFiles.Count; i++)
+            var csvFiles = Directory.GetDirectories(Settings.DataDirectory, "*.", SearchOption.TopDirectoryOnly);
+            var possibleYears = csvFiles.Select(Path.GetFileName).OrderByDescending(_ => _).ToList();
+            foreach (var possibleYear in possibleYears)
             {
-                var tmp = finder.ArrFiles[finder.ArrFiles.Count - i - 1].ToString();
-                if (!tmp.ToLower().EndsWith(".csv"))
-                    continue;
-
-                var ttmp = System.IO.Path.GetFileName(tmp);
-                tmp = f.HeadFromList(ref tmp, "\\" + ttmp);
-                tmp = System.IO.Path.GetFileName(tmp);
-                //f.HeadFromList(ref tmp, "-");
-                //				f.HeadFromList(ref tmp, "\\");
-                //				if(!lbDatei.Items.Contains(tmp))
-                //					lbDatei.Items.Add(tmp);
-
-                if (!arr.Contains(tmp))
-                    arr.Add(tmp);
-
-                if (tmp == DateTime.Now.Year.ToString())
-                    add = false;
+                lbDatei.Items.Add(possibleYear);
             }
-            if (add)
-                arr.Add(DateTime.Now.Year.ToString());
 
-            arr.Sort();
-            for (var i = 0; i < arr.Count; i++)
-                lbDatei.Items.Add(arr[arr.Count - i - 1].ToString());
-
-            //				lbDatei.Items.Add(DateTime.Now.Year.ToString());
-
-            lbDatei.SelectedItem = Settings._Jahr;
+            lbDatei.SelectedItem = Settings.Jahr;
         }
 
         protected override void HandleEnter()
@@ -169,11 +133,11 @@ namespace Sport
 
         private void cmdOK_Click(object sender, System.EventArgs e)
         {
-            _Ok = true;
-            Settings._Jahr = lbDatei.SelectedItem.ToString();
+            this.Ok = true;
+            Settings.Jahr = lbDatei.SelectedItem.ToString();
 
             var reg = new DRegistry();
-            reg.WriteProfileString(DRegistry.TRegistryKey.HKEY_CURRENT_USER, "Software\\Twr\\Sport", "Datei", Settings._Jahr);
+            reg.WriteProfileString(DRegistry.TRegistryKey.HKEY_CURRENT_USER, "Software\\Twr\\Sport", "Datei", Settings.Jahr);
 
             this.Close();
         }
@@ -183,15 +147,10 @@ namespace Sport
             cmdOK_Click(null, null);
         }
 
-        private void OnKeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)
                 cmdOK_Click(null, null);
-        }
-
-        private void lblDatei_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

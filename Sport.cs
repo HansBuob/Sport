@@ -92,7 +92,7 @@ namespace Sport
             for (var i = 0; i < SdDaten.Count; i++)
             {
                 var sd = SdDaten[i];
-                if (sd.Strecke == strecke)
+                if (sd.Rundfahrt.ToUpper() == strecke)
                     return sd;
             }
             return null;
@@ -225,7 +225,7 @@ namespace Sport
                     if (!htd.Serialize(sr, ref version))
                         break;
 
-                    var tmp = htd.Strecke.ToLower().Trim();
+                    //var tmp = htd.Strecke.ToLower().Trim();
                     JoDaten.Add(htd);
                 }
                 sr.Close();

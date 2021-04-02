@@ -283,16 +283,16 @@ namespace Sport
 
         private void frmHTEingabe_Load(object sender, System.EventArgs e)
         {
-            dtDatum.Value = dtDatum.Value.AddYears(f.ConvertToInt(Settings._Jahr) - dtDatum.Value.Year);
+            dtDatum.Value = dtDatum.Value.AddYears(f.ConvertToInt(Settings.Jahr) - dtDatum.Value.Year);
 
             if (_rv.HtDaten.Count > 0)
             {
-                var data = (HeimtrainerDaten)_rv.HtDaten[_rv.HtDaten.Count - 1];
+                var data = _rv.HtDaten[_rv.HtDaten.Count - 1];
                 lblInfo.Text = "Letztes Eingabedatum: " + data.StringDatum;
             }
 
             var init = new DInitFile();
-            init.ReadFile(Settings._DataPfad + "init.ini");
+            init.ReadFile(Settings.DataDirectory + "init.ini");
             var puls = init.GetData("Puls");
             if (puls == "0")
             {
@@ -302,7 +302,7 @@ namespace Sport
 
             if (_rv.HtDaten.Count > 0)
             {
-                var data = (HeimtrainerDaten)_rv.HtDaten[_rv.HtDaten.Count - 1];
+                var data = _rv.HtDaten[_rv.HtDaten.Count - 1];
                 tbBelastung.Text = data.Belastung.ToString();
                 tbDauer.Text = data.Dauer.ToString();
 
@@ -316,7 +316,7 @@ namespace Sport
         private void cmdOk_Click(object sender, System.EventArgs e)
         {
             var data = new HeimtrainerDaten();
-            data.StringDatum = dtDatum.Value.ToString("yyyyMMdd"); ;
+            data.StringDatum = dtDatum.Value.ToString("yyyyMMdd");
             data.Belastung = f.ConvertToDouble(tbBelastung.Text);
             data.Dauer = tbDauer.Text.ToDouble();
             //data.PulsschlagVor=f.ConvertToDouble(tbPulsschlagV.Text);

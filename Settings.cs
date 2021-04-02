@@ -6,22 +6,19 @@ namespace Sport
     public class MDI
     {
         public bool _hasWindows = false;
+
         private System.Windows.Forms.Form _parentMDI;
 
         private MenuItem WindowMenu;
-
-        public MDI()
-        {
-        }
 
         public void AddWindows(System.Windows.Forms.Form parentMDI, System.Windows.Forms.MainMenu mnuMain)
         {
             _parentMDI = parentMDI;
             WindowMenu = new MenuItem();
             WindowMenu.Text = "&Fenster";
-            WindowMenu.MenuItems.Add("Überlappend", new EventHandler(Cascade_Click));
-            WindowMenu.MenuItems.Add("Untereinander", new EventHandler(TileH_Click));
-            WindowMenu.MenuItems.Add("Nebeneinander", new EventHandler(TileV_Click));
+            WindowMenu.MenuItems.Add("Überlappend", Cascade_Click);
+            WindowMenu.MenuItems.Add("Untereinander", TileH_Click);
+            WindowMenu.MenuItems.Add("Nebeneinander", TileV_Click);
             WindowMenu.MdiList = true;
             mnuMain.MenuItems.Add(WindowMenu);
         }
@@ -65,13 +62,10 @@ namespace Sport
     /// </summary>
     public class Settings
     {
-        static Settings()
-        {
-        }
+        public static string DataDirectory { get; set; }
 
-        public static string _DataPfad;
-        public static string _Jahr;
+        public static string Jahr { get; set; }
 
-        public static bool _IsMdiLayout = false;
+        public static bool IsMdiLayout { get; set; } = false;
     }
 }

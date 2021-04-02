@@ -111,46 +111,46 @@ namespace Sport
             ((System.ComponentModel.ISupportInitialize)(this.sbPanelAnzahl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBarPanel3)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // mainMenu1
-            // 
+            //
             this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem3,
             this.menuItem6,
             this.menuItem1});
-            // 
+            //
             // menuItem3
-            // 
+            //
             this.menuItem3.Index = 0;
             this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem4,
             this.menuItem13,
             this.menuItem15});
             this.menuItem3.Text = "Eingabe";
-            // 
+            //
             // menuItem4
-            // 
+            //
             this.menuItem4.Index = 0;
             this.menuItem4.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftR;
             this.menuItem4.Text = "RV-Eingabe";
             this.menuItem4.Click += new System.EventHandler(this.OnMenuClick);
-            // 
+            //
             // menuItem13
-            // 
+            //
             this.menuItem13.Index = 1;
             this.menuItem13.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftH;
             this.menuItem13.Text = "HT-Eingabe";
             this.menuItem13.Click += new System.EventHandler(this.OnMenuClick);
-            // 
+            //
             // menuItem15
-            // 
+            //
             this.menuItem15.Index = 2;
             this.menuItem15.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftJ;
             this.menuItem15.Text = "JO-Eingabe";
             this.menuItem15.Click += new System.EventHandler(this.OnMenuClick);
-            // 
+            //
             // menuItem6
-            // 
+            //
             this.menuItem6.Index = 1;
             this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem7,
@@ -158,66 +158,66 @@ namespace Sport
             this.menuItem9,
             this.menuItem12});
             this.menuItem6.Text = "Ansicht";
-            // 
+            //
             // menuItem7
-            // 
+            //
             this.menuItem7.Index = 0;
             this.menuItem7.Shortcut = System.Windows.Forms.Shortcut.CtrlG;
             this.menuItem7.Text = "Grafik betrachten";
             this.menuItem7.Click += new System.EventHandler(this.OnMenuClick);
-            // 
+            //
             // menuItem8
-            // 
+            //
             this.menuItem8.Index = 1;
             this.menuItem8.Shortcut = System.Windows.Forms.Shortcut.CtrlE;
             this.menuItem8.Text = "Excel-Informationen";
             this.menuItem8.Click += new System.EventHandler(this.OnMenuClick);
-            // 
+            //
             // menuItem9
-            // 
+            //
             this.menuItem9.Index = 2;
             this.menuItem9.Text = "Gewichtskurve";
             this.menuItem9.Click += new System.EventHandler(this.OnMenuClick);
-            // 
+            //
             // menuItem12
-            // 
+            //
             this.menuItem12.Index = 3;
             this.menuItem12.Shortcut = System.Windows.Forms.Shortcut.CtrlK;
             this.menuItem12.Text = "Kalender";
             this.menuItem12.Click += new System.EventHandler(this.OnMenuClick);
-            // 
+            //
             // menuItem1
-            // 
+            //
             this.menuItem1.Index = 2;
             this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem10,
             this.menuItem11,
             this.menuItem14});
             this.menuItem1.Text = "Protokoll";
-            // 
+            //
             // menuItem10
-            // 
+            //
             this.menuItem10.Index = 0;
             this.menuItem10.Shortcut = System.Windows.Forms.Shortcut.CtrlR;
             this.menuItem10.Text = "Rennvelo";
             this.menuItem10.Click += new System.EventHandler(this.OnMenuClick);
-            // 
+            //
             // menuItem11
-            // 
+            //
             this.menuItem11.Index = 1;
             this.menuItem11.Shortcut = System.Windows.Forms.Shortcut.CtrlH;
             this.menuItem11.Text = "Heimtrainer";
             this.menuItem11.Click += new System.EventHandler(this.OnMenuClick);
-            // 
+            //
             // menuItem14
-            // 
+            //
             this.menuItem14.Index = 2;
             this.menuItem14.Shortcut = System.Windows.Forms.Shortcut.CtrlJ;
             this.menuItem14.Text = "Joggen";
             this.menuItem14.Click += new System.EventHandler(this.OnMenuClick);
-            // 
+            //
             // StatusBar
-            // 
+            //
             this.StatusBar.Location = new System.Drawing.Point(0, 440);
             this.StatusBar.Name = "StatusBar";
             this.StatusBar.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
@@ -233,34 +233,34 @@ namespace Sport
             this.StatusBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnStatusBarMouseDown);
             this.StatusBar.MouseLeave += new System.EventHandler(this.OnStatusbarMouseLeave);
             this.StatusBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnStatusbarMouseMove);
-            // 
+            //
             // sbInfo
-            // 
+            //
             this.sbInfo.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
             this.sbInfo.BorderStyle = System.Windows.Forms.StatusBarPanelBorderStyle.None;
             this.sbInfo.Name = "sbInfo";
             this.sbInfo.Width = 783;
-            // 
+            //
             // sbPanelDatei
-            // 
+            //
             this.sbPanelDatei.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
             this.sbPanelDatei.Name = "sbPanelDatei";
             this.sbPanelDatei.Width = 10;
-            // 
+            //
             // sbPanelAnzahl
-            // 
+            //
             this.sbPanelAnzahl.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
             this.sbPanelAnzahl.Name = "sbPanelAnzahl";
             this.sbPanelAnzahl.Width = 10;
-            // 
+            //
             // statusBarPanel3
-            // 
+            //
             this.statusBarPanel3.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
             this.statusBarPanel3.Name = "statusBarPanel3";
             this.statusBarPanel3.Width = 10;
-            // 
+            //
             // ToolBar
-            // 
+            //
             this.ToolBar.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
             this.toolBarButton1,
             this.toolBarButton4,
@@ -276,40 +276,40 @@ namespace Sport
             this.ToolBar.TabIndex = 2;
             this.ToolBar.ButtonClick += new System.Windows.Forms.ToolBarButtonClickEventHandler(this.OnToolBarButtonClick);
             this.ToolBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnFormKeyDown);
-            // 
+            //
             // toolBarButton1
-            // 
+            //
             this.toolBarButton1.ImageIndex = 0;
             this.toolBarButton1.Name = "toolBarButton1";
             this.toolBarButton1.ToolTipText = "Grafik betrachten";
-            // 
+            //
             // toolBarButton4
-            // 
+            //
             this.toolBarButton4.ImageIndex = 1;
             this.toolBarButton4.Name = "toolBarButton4";
             this.toolBarButton4.ToolTipText = "Gewichtskurve";
-            // 
+            //
             // toolBarButton2
-            // 
+            //
             this.toolBarButton2.Name = "toolBarButton2";
             this.toolBarButton2.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
-            // 
+            //
             // toolBarButton3
-            // 
+            //
             this.toolBarButton3.ImageIndex = 2;
             this.toolBarButton3.Name = "toolBarButton3";
             this.toolBarButton3.ToolTipText = "Excel-Informationen";
-            // 
+            //
             // imageList1
-            // 
+            //
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "");
             this.imageList1.Images.SetKeyName(1, "");
             this.imageList1.Images.SetKeyName(2, "");
-            // 
+            //
             // Work
-            // 
+            //
             this.Work.BackColor = System.Drawing.SystemColors.Control;
             this.Work.Location = new System.Drawing.Point(23, 50);
             this.Work.Name = "Work";
@@ -318,9 +318,9 @@ namespace Sport
             this.Work.Click += new System.EventHandler(this.OnClick);
             this.Work.Paint += new System.Windows.Forms.PaintEventHandler(this.OnPaint);
             this.Work.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnWorkMouseMove);
-            // 
+            //
             // frmMain
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(830, 459);
             this.Controls.Add(this.Work);
@@ -340,7 +340,6 @@ namespace Sport
             ((System.ComponentModel.ISupportInitialize)(this.statusBarPanel3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -363,10 +362,6 @@ namespace Sport
 
         private Sport _rv = new Sport();
 
-        private void menuItem1_Click(object sender, System.EventArgs e)
-        {
-        }
-
         private List<RVDaten> _arrShownData = new List<RVDaten>();
 
         private MDI _mdi = new MDI();
@@ -374,13 +369,13 @@ namespace Sport
         private void Form1_Load(object sender, System.EventArgs e)
         {
             var reg = new DRegistry();
-            Settings._DataPfad = reg.GetProfileString(DRegistry.TRegistryKey.HKEY_CURRENT_USER, "Software\\Twr\\Sport", "Data", "");
+            Settings.DataDirectory = reg.GetProfileString(DRegistry.TRegistryKey.HKEY_CURRENT_USER, "Software\\Twr\\Sport", "Data", "");
 
-            Settings._DataPfad = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\Programmdaten\\Sport\\";
+            Settings.DataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\Programmdaten\\Sport\\";
 
-            Settings._Jahr = reg.GetProfileString(DRegistry.TRegistryKey.HKEY_CURRENT_USER, "Software\\Twr\\Sport", "Datei", "");
+            Settings.Jahr = reg.GetProfileString(DRegistry.TRegistryKey.HKEY_CURRENT_USER, "Software\\Twr\\Sport", "Datei", "");
 
-            if (Settings._DataPfad.Length == 0)
+            if (Settings.DataDirectory.Length == 0)
             {
                 var tmp = Environment.CurrentDirectory;
                 var pos = tmp.LastIndexOf("\\", StringComparison.Ordinal);
@@ -398,36 +393,36 @@ namespace Sport
                     if (tmp.IndexOf("data", StringComparison.Ordinal) == -1)
                         continue;
 
-                    Settings._DataPfad = tmp + "\\";
+                    Settings.DataDirectory = tmp + "\\";
                     break;
                 }
             }
-            if ((Settings._Jahr.Length == 0) && (Settings._DataPfad.Length != 0))
+            if ((Settings.Jahr.Length == 0) && (Settings.DataDirectory.Length != 0))
             {
                 //DateTime dt=new DateTime();
-                Settings._Jahr = DateTime.Now.Year.ToString();
+                Settings.Jahr = DateTime.Now.Year.ToString();
                 /*				DFileFind finder =new DFileFind();
-                                finder.FindFiles(Settings._DataPfad, "*.csv", 1);
+                                finder.FindFiles(Settings.DataDirectory, "*.csv", 1);
                                 if(finder.ArrFiles.Count>0)
                                 {
                                     string tmp=finder.ArrFiles[0].ToString();
                                     tmp=System.IO.Path.GetFileName(tmp);
                                     tmp=f.HeadFromList(ref tmp, ".csv");
                                     tmp=tmp.Substring(tmp.Length-4);
-                                    Settings._Jahr=tmp;
+                                    Settings.Jahr=tmp;
                                 }*/
             }
 #if DEBUG
-            //				Settings._DataPfad=@"D:\Programme\dNET\RVdv\";
+            //				Settings.DataDirectory=@"D:\Programme\dNET\RVdv\";
 #endif
 
-            _rv.Jahr = Settings._Jahr;
-            _rv.Pfad = Settings._DataPfad;
+            _rv.Jahr = Settings.Jahr;
+            _rv.Pfad = Settings.DataDirectory;
             _rv.Load();
 
             //			_rv.SaveData();
 
-            sbPanelDatei.Text = Settings._Jahr;
+            sbPanelDatei.Text = Settings.Jahr;
             //			sbPanelAnzahl.Text="Anzahl Daten: " + _rv.RvDaten.Count.ToString();
             sbPanelAnzahl.Text = "Anzahl Daten: (" + _rv.RvDaten.Count + "/" + _rv.HtDaten.Count + "/" + _rv.JoDaten.Count + ")";
 
@@ -438,7 +433,7 @@ namespace Sport
 
             //			toolTip.SetToolTip(Work, "Es war\r\neinmal");
 
-            //			StatusBar.Panels[1].Text=Settings._Jahr;
+            //			StatusBar.Panels[1].Text=Settings.Jahr;
         }
 
         private List<double> _aGewicht = new List<double>();
@@ -575,8 +570,8 @@ namespace Sport
             {
                 var tlht = new Hashtable();
                 var trv = new Sport();
-                trv.Pfad = Settings._DataPfad;
-                trv.Jahr = (f.ConvertToInt(Settings._Jahr) - 1).ToString();
+                trv.Pfad = Settings.DataDirectory;
+                trv.Jahr = (f.ConvertToInt(Settings.Jahr) - 1).ToString();
 
                 trv.Load();
 
@@ -693,7 +688,7 @@ namespace Sport
                 var kg = ((double)h) / 4;
                 //			tarr.Sort();
 
-                var ad = DateTime.DaysInMonth(f.ConvertToInt(Settings._Jahr), 2);
+                //var ad = DateTime.DaysInMonth(f.ConvertToInt(Settings.Jahr), 2);
 
                 var w = ((double)l) / 366;
 
@@ -715,7 +710,7 @@ namespace Sport
 
                 for (var i = 0; i < 366; i++)
                 {
-                    var dt = new DateTime(f.ConvertToInt(Settings._Jahr), 1, 1);
+                    var dt = new DateTime(f.ConvertToInt(Settings.Jahr), 1, 1);
                     dt = dt.AddDays(i);
                     var day = dt.ToString("yyyyMMdd");
                     if (dt <= maxdate)
@@ -801,7 +796,7 @@ namespace Sport
                 var lmonth = 0;
                 for (var i = 0; i < 367; i++)
                 {
-                    var dt = new DateTime(f.ConvertToInt(Settings._Jahr), 1, 1);
+                    var dt = new DateTime(f.ConvertToInt(Settings.Jahr), 1, 1);
                     dt = dt.AddDays(i);
                     if (lmonth != dt.Month)
                     {
@@ -837,7 +832,7 @@ namespace Sport
                 e.Graphics.DrawString(info, new Font("Microsoft Sans Serif", 9), new SolidBrush(Color.Salmon), 45, Work.Bottom - 10 - 90 - (0 * hstep) - 10 + 20);
             }
 
-            //			Settings._Jahr;
+            //			Settings.Jahr;
 
             //			Pen hellorange = new Pen(Color.FromArgb(255,180,80));
         }
@@ -909,11 +904,11 @@ namespace Sport
                 dlg.ShowDialog(this);
                 if (dlg.Ok)
                 {
-                    _rv.Jahr = Settings._Jahr;
-                    //					_rv.Pfad=Settings._DataPfad;
+                    _rv.Jahr = Settings.Jahr;
+                    //					_rv.Pfad=Settings.DataDirectory;
                     _rv.Load();
 
-                    sbPanelDatei.Text = Settings._Jahr;
+                    sbPanelDatei.Text = Settings.Jahr;
                     sbPanelAnzahl.Text = "Anzahl Daten: (" + _rv.RvDaten.Count + "/" + _rv.HtDaten.Count + "/" + _rv.JoDaten.Count + ")";
 
                     this.Work.Invalidate();
@@ -942,7 +937,7 @@ namespace Sport
                 //				day++;
                 //				day++;
 
-                var dt = new DateTime(f.ConvertToInt(Settings._Jahr), 1, 1);
+                var dt = new DateTime(f.ConvertToInt(Settings.Jahr), 1, 1);
                 dt = dt.AddDays(day);
 
                 if ((day + 1) > this._aGewicht.Count)
@@ -1006,7 +1001,7 @@ namespace Sport
                     return;
                 }
 
-                var rvDaten = (RVDaten)_arrShownData[info];
+                var rvDaten = _arrShownData[info];
 
                 var sd = _rv.SDInfo(rvDaten.Strecke);
                 /*			for(int i=0;i<_rv.SdDaten.Count;i++)
@@ -1073,15 +1068,24 @@ namespace Sport
 
             if (menuText == "Rennvelo")
             {
-                var frm = new frmStreckenSortiert();
-                frm.Owner = this.Owner;
-                frm.MdiParent = this;
-                frm.setRV = _rv;
-                frm.Show();
+                //var frm = new frmStreckenSortiertPaintProtokoll();
+                //frm.Owner = this.Owner;
+                //frm.MdiParent = this;
+                //frm.setRV = _rv;
+                //frm.Show();
+
+
+                var frm2 = new frmProtokollRennvelo();
+                frm2.Owner = this.Owner;
+                //				frm.init();
+                //				frm.axWebBrowser.Parent=frm.Parent;
+                frm2.MdiParent = this;
+                frm2.setRV = _rv;
+                frm2.Show();
             }
             if (menuText == "Heimtrainer")
             {
-                var frm = new frmProtokollHomeTrainer();
+                var frm = new frmProtokollHomeTrainerPaintProtokoll();
                 frm.Owner = this.Owner;
                 frm.MdiParent = this;
                 frm.setRV = _rv;
@@ -1090,7 +1094,7 @@ namespace Sport
 
             if (menuText == "Joggen")
             {
-                var frm = new frmProtokollJoggen();
+                var frm = new frmProtokollJoggenPaintProtokoll();
                 frm.Owner = this.Owner;
                 frm.MdiParent = this;
                 frm.setRV = _rv;
@@ -1102,13 +1106,12 @@ namespace Sport
                 var frm = new frmGProtokoll();
                 frm.Owner = this.Owner;
                 frm.MdiParent = this;
-                frm.setRV = _rv;
                 frm.Show();
             }
 
             if (menuText == "Excel-Informationen")
             {
-                var frm = new frmExcelInfo();
+                var frm = new frmExcelInfoPaintProtokoll();
                 frm.Owner = this.Owner;
                 frm.MdiParent = this;
                 frm.setRV = _rv;
@@ -1131,6 +1134,9 @@ namespace Sport
                 frm.ShowDialog(this);
 
                 sbPanelAnzahl.Text = "Anzahl Daten: (" + _rv.RvDaten.Count + "/" + _rv.HtDaten.Count + "/" + _rv.JoDaten.Count + ")";
+
+
+
             }
             if (menuText == "HT-Eingabe")
             {
@@ -1152,9 +1158,9 @@ namespace Sport
         private void OnToolBarButtonClick(object sender, System.Windows.Forms.ToolBarButtonClickEventArgs e)
         {
             /*			if(_mdi._hasWindows==false)
-                            Settings._IsMdiLayout=false;
+                            Settings.IsMdiLayout=false;
                         else
-                            Settings._IsMdiLayout=true;
+                            Settings.IsMdiLayout=true;
             */
             _rvGrafik = false;
             _gewichtskurve = false;
@@ -1177,7 +1183,7 @@ namespace Sport
             Work.Visible = false;
             if (e.Button.ToolTipText == "Excel-Informationen")
             {
-                var frm = new frmExcelInfo();
+                var frm = new frmExcelInfoPaintProtokoll();
                 frm.Owner = this.Owner;
                 frm.MdiParent = this;
                 frm.setRV = _rv;
@@ -1227,7 +1233,6 @@ namespace Sport
 
         private void StatusBar_PanelClick(object sender, StatusBarPanelClickEventArgs e)
         {
-
         }
     }
 

@@ -8,7 +8,7 @@ namespace Sport
 {
     public class JoggenDaten : SportDaten
     {
-        private string _Strecke;
+        private string _strecke;
 
         public override double Dauer
         {
@@ -47,23 +47,11 @@ namespace Sport
             }
         }
 
-
         public string Bemerkung { get; set; }
-
 
         public double Peace { get; set; }
 
         public string Link { get; set; }
-        /*
-                _Strecke=_Strecke.Trim();
-                if(_Strecke.Length>0)
-                {
-                    string tmp=_Strecke.Substring(0).ToUpper();
-                    _Strecke=_Strecke.Substring(1);
-                    _Strecke=tmp+_Strecke;
-                }
-                return _Strecke;
-*/
         public double Position1 { get; set; }
         public double Position2 { get; set; }
         public double Position3 { get; set; }
@@ -73,28 +61,25 @@ namespace Sport
 
         public string Strecke
         {
-            get
-            {
-                return _Strecke;
-            }
+            get => _strecke;
             set
             {
-                _Strecke = value;
-                _Strecke = _Strecke.Trim();
-                if (_Strecke.Length > 0)
+                _strecke = value;
+                _strecke = _strecke.Trim();
+                if (_strecke.Length > 0)
                 {
-                    var tmp = _Strecke.Substring(0, 1).ToUpper();
-                    _Strecke = _Strecke.Substring(1);
-                    _Strecke = tmp + _Strecke;
+                    var tmp = _strecke.Substring(0, 1).ToUpper();
+                    _strecke = _strecke.Substring(1);
+                    _strecke = tmp + _strecke;
                 }
             }
         }
 
-        public static double GetZwischenZeit(double Zeit1, double Zeit2)
+        public static double GetZwischenZeit(double zeit1, double zeit2)
         {
-            if (!TimeSpan.TryParse("00:" + Zeit1.ToString("0.00").Replace(".", ":"), out var timeSpan1))
+            if (!TimeSpan.TryParse("00:" + zeit1.ToString("0.00").Replace(".", ":"), out var timeSpan1))
                 return 0.0;
-            if (!TimeSpan.TryParse("00:" + Zeit2.ToString("0.00").Replace(".", ":"), out var timeSpan2))
+            if (!TimeSpan.TryParse("00:" + zeit2.ToString("0.00").Replace(".", ":"), out var timeSpan2))
                 return 0.0;
 
             var timeSpan = timeSpan1 - timeSpan2;
@@ -136,9 +121,9 @@ namespace Sport
                     this.Bemerkung = dataNode.InnerXml;
                 else if (dataNode.LocalName.ToLower() == "Peace".ToLower())
                 {
-                    var result = 0.0;
-                    double.TryParse(dataNode.InnerXml, out result);
-                    this.Peace = result;
+                    this.Peace = 0.0;
+                    if (double.TryParse(dataNode.InnerXml, out var result))
+                        this.Peace = result;
                 }
                 else if (dataNode.LocalName.ToLower() == "Link".ToLower())
                     this.Link = dataNode.InnerXml;
@@ -163,7 +148,7 @@ namespace Sport
             {
                 var sr = (StreamReader)stream;
                 var data = "";
-again:
+            again:
                 data = sr.ReadLine();
                 if (data == null)
                     return false;
@@ -177,8 +162,6 @@ again:
 
                 var str = data + ",";
                 str += ",,,,,,,";
-
-                var xxx = str;
 
                 this.StringDatum = f.HeadFromList(ref str, ",");
                 this.Gewicht = f.HeadFromList(ref str, ",").ToDouble();
@@ -247,27 +230,27 @@ again:
                     //					_LP6=G6;
                 }
 
-                var format = @"
-  <Data>
-    <Datum>{0}</Datum>
-    <Strecke>{1}</Strecke>
-    <Gewicht>{2}</Gewicht>
-    <Position1>{3}</Position1>
-    <Position2>{4}</Position2>
-    <Position3>{5}</Position3>
-    <Position4>{6}</Position4>
-    <Position5>{7}</Position5>
-    <Bemerkung>{8}</Bemerkung>
-  </Data>
-";
+//                var format = @"
+//  <Data>
+//    <Datum>{0}</Datum>
+//    <Strecke>{1}</Strecke>
+//    <Gewicht>{2}</Gewicht>
+//    <Position1>{3}</Position1>
+//    <Position2>{4}</Position2>
+//    <Position3>{5}</Position3>
+//    <Position4>{6}</Position4>
+//    <Position5>{7}</Position5>
+//    <Bemerkung>{8}</Bemerkung>
+//  </Data>
+//";
                 //02.01.2011
-                var xml = string.Format(format, this.StringDatum.Substring(6, 2) + "." + this.StringDatum.Substring(4, 2) + "." + this.StringDatum.Substring(0, 4), this.Strecke, this.Gewicht.ToString(),
-                    this.Position1.ToString(),
-                    this.Position2.ToString(),
-                    this.Position3.ToString(),
-                    this.Position4.ToString(),
-                    this.Position5.ToString(),
-                    this.Bemerkung);
+                //var xml = string.Format(format, this.StringDatum.Substring(6, 2) + "." + this.StringDatum.Substring(4, 2) + "." + this.StringDatum.Substring(0, 4), this.Strecke, this.Gewicht.ToString(),
+                //    this.Position1.ToString(),
+                //    this.Position2.ToString(),
+                //    this.Position3.ToString(),
+                //    this.Position4.ToString(),
+                //    this.Position5.ToString(),
+                //    this.Bemerkung);
                 //Console.WriteLine("  " + xml.Trim());
                 //<Data>
                 //  <Datum>11.06.2011</Datum>

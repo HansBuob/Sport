@@ -364,7 +364,7 @@ namespace Sport
             //this.AutoScale=false;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
-            dtDatum.Value = dtDatum.Value.AddYears(f.ConvertToInt(Settings._Jahr) - dtDatum.Value.Year);
+            dtDatum.Value = dtDatum.Value.AddYears(f.ConvertToInt(Settings.Jahr) - dtDatum.Value.Year);
 
             if (_rv.JoDaten.Count > 0)
             {
@@ -386,7 +386,7 @@ namespace Sport
         private void cmdOk_Click(object sender, System.EventArgs e)
         {
             var data = new JoggenDaten();
-            data.StringDatum = dtDatum.Value.ToString("yyyyMMdd"); ;
+            data.StringDatum = dtDatum.Value.ToString("yyyyMMdd");
             data.Strecke = cboStrecke.Text;
 
             //if(tbPause1.Text!="1.00")

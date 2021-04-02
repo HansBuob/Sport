@@ -1,17 +1,14 @@
 using System.Collections;
-
 using twr;
 using f = twr.DFunktionen;
 
-//using Rvdv;
-
 namespace Sport
 {
-    public class frmExcelInfo : frmPaintProtokoll//frmGProtokoll//frmProtokollOhneGrid
+    public class frmExcelInfoPaintProtokoll : frmPaintProtokoll
     {
         private System.ComponentModel.IContainer components = null;
 
-        public frmExcelInfo()
+        public frmExcelInfoPaintProtokoll()
         {
             // This call is required by the Windows Form Designer.
             InitializeComponent();
@@ -43,13 +40,13 @@ namespace Sport
         private void InitializeComponent()
         {
             //
-            // frmExcelInfo
+            // frmExcelInfoPaintProtokoll
             //
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
             this.ClientSize = new System.Drawing.Size(934, 430);
             this.MaximizeBox = true;
             this.MinimizeBox = true;
-            this.Name = "frmExcelInfo";
+            this.Name = "frmExcelInfoPaintProtokoll";
             this.Text = "Excel-Info ()";
         }
 
@@ -68,9 +65,9 @@ namespace Sport
             //			SetData(2,0,11.2345,2);
 
             this.Text = "Excel-Info";
-            this.Text += " (" + Settings._Jahr + ")";
+            this.Text += " (" + Settings.Jahr + ")";
 
-            //			SetData(1,0,"Jahr: " + Settings._Jahr);
+            //			SetData(1,0,"Jahr: " + Settings.Jahr);
             //			SetColor(1, 0, 100, Color.PaleGreen);
 
             /*			SetColor(1,2,1, Color.FromArgb(255,180,80));
@@ -104,7 +101,7 @@ namespace Sport
 
             for (var z = 0; z < _rv.SdDaten.Count; z++)
             {
-                var sd = (SDDaten)_rv.SdDaten[z];
+                var sd = _rv.SdDaten[z];
                 //				SetData(46 + z*3, 1-1, "| " + sd.Strecke + "|");
                 if (!titel.EndsWith("|"))
                     titel += "| " + sd.Strecke + "|";
@@ -139,7 +136,7 @@ namespace Sport
             var strecken = new Hashtable();
             for (var i = 0; i < _rv.RvDaten.Count; i++)
             {
-                var rv = (RVDaten)_rv.RvDaten[i];
+                var rv = _rv.RvDaten[i];
                 var datum = rv.StringDatum;
                 datum = datum.Substring(4, 2);
                 monat = f.ConvertToInt(datum);
@@ -155,7 +152,7 @@ namespace Sport
                     //					{
                     for (var z = 0; z < _rv.SdDaten.Count; z++)
                     {
-                        var sd = (SDDaten)_rv.SdDaten[z];
+                        var sd = _rv.SdDaten[z];
                         if (!strecken.ContainsKey(sd.Strecke))
                             SetData(46 + z * 3, monat + 1 - 1, "|  |");
                         else
@@ -225,7 +222,7 @@ namespace Sport
             }
             for (var z = 0; z < _rv.SdDaten.Count; z++)
             {
-                var sd = (SDDaten)_rv.SdDaten[z];
+                var sd = _rv.SdDaten[z];
                 if (!strecken.ContainsKey(sd.Strecke))
                     SetData(46 + z * 3, monat + 1 - 1, "|  |");
                 else
@@ -282,7 +279,7 @@ namespace Sport
                 tkcal = 0.0;
                 for (var i = 0; i < _rv.HtDaten.Count; i++)
                 {
-                    var ht = (HeimtrainerDaten)_rv.HtDaten[i];
+                    var ht = _rv.HtDaten[i];
                     tzeit += ht.Dauer;
                     tkm += ht.Distanz;
                     tkcal += ht.KJoul / 4.186;
@@ -319,7 +316,7 @@ namespace Sport
                 tkcal = 0.0;
                 for (var i = 0; i < _rv.JoDaten.Count; i++)
                 {
-                    var jo = (JoggenDaten)_rv.JoDaten[i];
+                    var jo = _rv.JoDaten[i];
                     tzeit += jo.Dauer;
                     //				tkm+=ht.Distanz;
                 }

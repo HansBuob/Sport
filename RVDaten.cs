@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Globalization;
+using System.IO;
 using System.Xml;
 using twr.common;
 using f = twr.DFunktionen;
@@ -7,10 +8,7 @@ namespace Sport
 {
     public class RVDaten : SportDaten
     {
-        //		bool _bNewFormat=false;
-        public RVDaten() { }
-
-        public RVDaten(string strecke)
+        public RVDaten()
         {
         }
 
@@ -46,9 +44,9 @@ namespace Sport
                 else if (dataNode.LocalName.ToLower() == "zeit10")
                     zeit10 = dataNode.InnerXml;
                 else if (dataNode.LocalName.ToLower() == "avs")
-                    _Durchschnitt = dataNode.InnerXml;
+                    Durchschnitt = dataNode.InnerXml.ToDouble();
                 else if (dataNode.LocalName.ToLower() == "mxs")
-                    _Hoechst = dataNode.InnerXml;
+                    Hoechst = dataNode.InnerXml.ToDouble();
                 else if (dataNode.LocalName.ToLower() == "gewicht")
                     this.Gewicht = dataNode.InnerXml.ToDouble();
                 else if (dataNode.LocalName.ToLower() == "bemerkung")
@@ -62,28 +60,28 @@ namespace Sport
                 dataNode = dataNode.NextSibling;
                 //_bNewFormat=true;
             }
-            _Total = "0.00";//Durchschnitt auf bestimmte Strecke
-            _ZwischenZeit1 = zeit1.ToDouble();
-            _ZwischenZeit2 = zeit2.ToDouble();
-            _ZwischenZeit3 = zeit3.ToDouble();
-            _ZwischenZeit4 = zeit4.ToDouble();
-            _ZwischenZeit5 = zeit5.ToDouble();
-            _ZwischenZeit6 = zeit6.ToDouble();
-            _ZwischenZeit7 = zeit7.ToDouble();
+            this.Total = 0.0;//Durchschnitt auf bestimmte Strecke
+            _zwischenZeit1 = zeit1.ToDouble();
+            _zwischenZeit2 = zeit2.ToDouble();
+            _zwischenZeit3 = zeit3.ToDouble();
+            _zwischenZeit4 = zeit4.ToDouble();
+            _zwischenZeit5 = zeit5.ToDouble();
+            _zwischenZeit6 = zeit6.ToDouble();
+            _zwischenZeit7 = zeit7.ToDouble();
 
-            _TotalZeit = _ZwischenZeit7.GetValueOrDefault();
-            if (_TotalZeit == 0)
-                _TotalZeit = _ZwischenZeit6.GetValueOrDefault();
-            if (_TotalZeit == 0)
-                _TotalZeit = _ZwischenZeit5.GetValueOrDefault();
-            if (_TotalZeit == 0)
-                _TotalZeit = _ZwischenZeit4.GetValueOrDefault();
-            if (_TotalZeit == 0)
-                _TotalZeit = _ZwischenZeit3.GetValueOrDefault();
-            if (_TotalZeit == 0)
-                _TotalZeit = _ZwischenZeit2.GetValueOrDefault();
-            if (_TotalZeit == 0)
-                _TotalZeit = _ZwischenZeit1.GetValueOrDefault();
+            TotalZeit = _zwischenZeit7.GetValueOrDefault();
+            if (TotalZeit == 0)
+                TotalZeit = _zwischenZeit6.GetValueOrDefault();
+            if (TotalZeit == 0)
+                TotalZeit = _zwischenZeit5.GetValueOrDefault();
+            if (TotalZeit == 0)
+                TotalZeit = _zwischenZeit4.GetValueOrDefault();
+            if (TotalZeit == 0)
+                TotalZeit = _zwischenZeit3.GetValueOrDefault();
+            if (TotalZeit == 0)
+                TotalZeit = _zwischenZeit2.GetValueOrDefault();
+            if (TotalZeit == 0)
+                TotalZeit = _zwischenZeit1.GetValueOrDefault();
 
             //_ARS aus total.dat immer automatisch bestimmen, es sei den bereits vorhanden
 
@@ -109,22 +107,22 @@ namespace Sport
 
                 var str = data + ",";
 
-                _ABCStrecke = f.ConvertToInt(f.HeadFromList(ref str, ","));
-                _Strecke = f.HeadFromList(ref str, ",");
-                _Durchschnitt = f.HeadFromList(ref str, ",");
-                _Hoechst = f.HeadFromList(ref str, ",");
+                _abcStrecke = f.ConvertToInt(f.HeadFromList(ref str, ","));
+                Strecke = f.HeadFromList(ref str, ",");
+                Durchschnitt = f.HeadFromList(ref str, ",").ToDouble();
+                this.Hoechst = f.HeadFromList(ref str, ",").ToDouble();
                 this.Gewicht = f.HeadFromList(ref str, ",").ToDouble();
-                _TotalZeit = f.HeadFromList(ref str, ",").ToDouble();
-                _ARS = f.ConvertToInt(f.HeadFromList(ref str, ","));
-                _ZwischenZeit1 = f.HeadFromList(ref str, ",").ToDouble();
-                _ZwischenZeit2 = f.HeadFromList(ref str, ",").ToDouble();
-                _ZwischenZeit3 = f.HeadFromList(ref str, ",").ToDouble();
+                this.TotalZeit = f.HeadFromList(ref str, ",").ToDouble();
+                _ars = f.ConvertToInt(f.HeadFromList(ref str, ","));
+                this.ZwischenZeit1 = f.HeadFromList(ref str, ",").ToDouble();
+                this.ZwischenZeit2 = f.HeadFromList(ref str, ",").ToDouble();
+                this.ZwischenZeit3 = f.HeadFromList(ref str, ",").ToDouble();
 
-                _ZwischenZeit4 = f.HeadFromList(ref str, ",").ToDouble();
-                _ZwischenZeit5 = f.HeadFromList(ref str, ",").ToDouble();
-                _ZwischenZeit6 = f.HeadFromList(ref str, ",").ToDouble();
-                _ZwischenZeit7 = f.HeadFromList(ref str, ",").ToDouble();
-                _Total = f.HeadFromList(ref str, ",");
+                this.ZwischenZeit4 = f.HeadFromList(ref str, ",").ToDouble();
+                this.ZwischenZeit5 = f.HeadFromList(ref str, ",").ToDouble();
+                this.ZwischenZeit6 = f.HeadFromList(ref str, ",").ToDouble();
+                this.ZwischenZeit7 = f.HeadFromList(ref str, ",").ToDouble();
+                this.Total = f.HeadFromList(ref str, ",").ToDouble();
                 this.StringDatum = f.HeadFromList(ref str, ",");
                 //		m_Datum=ChangeDatum(m_Datum);
 
@@ -138,23 +136,23 @@ namespace Sport
                 var sw = (StreamWriter)stream;
 
                 var data = "";
-                data = _ABCStrecke + ",";
-                data += _Strecke + ",";
-                data += _Durchschnitt + ",";
-                data += _Hoechst + ",";
-                data += this.Gewicht.ToString() + ",";
-                data += _TotalZeit + ",";
-                data += _ARS.ToString() + ",";
-                data += _ZwischenZeit1 + ",";
-                data += _ZwischenZeit2 + ",";
-                data += _ZwischenZeit3 + ",";
+                data = _abcStrecke + ",";
+                data += this.Strecke + ",";
+                data += this.Durchschnitt.ToString(CultureInfo.InvariantCulture) + ",";
+                data += this.Hoechst.ToString(CultureInfo.InvariantCulture) + ",";
+                data += this.Gewicht.ToString(CultureInfo.InvariantCulture) + ",";
+                data += this.TotalZeit.ToString(CultureInfo.InvariantCulture) + ",";
+                data += _ars.ToString() + ",";
+                data += this.ZwischenZeit1 + ",";
+                data += this.ZwischenZeit2 + ",";
+                data += this.ZwischenZeit3 + ",";
 
-                data += _ZwischenZeit4 + ",";
-                data += _ZwischenZeit5 + ",";
-                data += _ZwischenZeit6 + ",";
-                data += _ZwischenZeit7 + ",";
-                data += _Total + ",";
-                data += this.StringDatum + ",";
+                data += this.ZwischenZeit4 + ",";
+                data += this.ZwischenZeit5 + ",";
+                data += this.ZwischenZeit6 + ",";
+                data += this.ZwischenZeit7 + ",";
+                data += this.Total + ",";
+                data += this.Datum.ToString("yyyyMMdd") + ",";
                 //		m_Datum=ChangeDatum(m_Datum);
 
                 data += this.Bemerkung.Replace(",", "{K}") + ",";
@@ -176,24 +174,18 @@ namespace Sport
 
         public string Bemerkung { get; set; }
 
-        private int _ABCStrecke;
-        private string _Strecke;
-        private string _Durchschnitt;
-        private string _Hoechst;
+        private int _abcStrecke;
 
         //		string _Gewicht;
-        private double _TotalZeit;
 
-        private long _ARS;
-        private double? _ZwischenZeit1;
-        private double? _ZwischenZeit2;
-        private double? _ZwischenZeit3;
-        private double? _ZwischenZeit4;
-        private double? _ZwischenZeit5;
-        private double? _ZwischenZeit6;
-        private double? _ZwischenZeit7;
-
-        private string _Total;
+        private long _ars;
+        private double? _zwischenZeit1;
+        private double? _zwischenZeit2;
+        private double? _zwischenZeit3;
+        private double? _zwischenZeit4;
+        private double? _zwischenZeit5;
+        private double? _zwischenZeit6;
+        private double? _zwischenZeit7;
 
         //		string _Datum;
         //		string _Bemerkung;
@@ -205,7 +197,7 @@ namespace Sport
             {
                 //				return 0.0;
 
-                var kcal = 0.0525 * _TotalZeit + 0.125 * (double)this.ARS * this.Gewicht;
+                var kcal = 0.0525 * TotalZeit + 0.125 * this.ARS * this.Gewicht;
                 return kcal;
                 //				Kcal=0.0525 * m_Total + 0.125 * m_ARS * m_Gewicht;
             }
@@ -220,74 +212,27 @@ namespace Sport
             }
         }
 
-        public string Strecke
-        {
-            get => _Strecke;
-            set => _Strecke = value;
-        }
+        public string Strecke { get; set; }
 
-        public double Durchschnitt
-        {
-            get
-            {
-                return f.ConvertToDouble(_Durchschnitt);
-            }
-            set
-            {
-                _Durchschnitt = value.ToString();
-            }
-        }
+        public double Durchschnitt { get; set; }
 
-        public double Hoechst
-        {
-            get
-            {
-                return f.ConvertToDouble(_Hoechst);
-            }
-            set
-            {
-                _Hoechst = value.ToString();
-            }
-        }
-
-        /*
-                public double Gewicht
-                {
-                    get
-                    {
-                        return f.ConvertToDouble(_Gewicht);
-                    }
-                    set
-                    {
-                        _Gewicht=value.ToString();
-                    }
-                }*/
+        public double Hoechst { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
-        public double TotalZeit
-        {
-            get
-            {
-                return _TotalZeit;
-            }
-            set
-            {
-                _TotalZeit = value;
-            }
-        }
+        public double TotalZeit { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
         public long ARS
         {
             get
             {
-                if (_ARS != 0.0)
-                    return _ARS;
+                if (_ars != 0.0)
+                    return _ars;
 
                 var ars = 0.00133 * this.Durchschnitt;
                 ars = this.TotalZeit * this.Durchschnitt * ars;
-                _ARS = (long)ars;
-                return _ARS;
+                _ars = (long)ars;
+                return _ars;
             }
             //set
             //{
@@ -296,105 +241,95 @@ namespace Sport
         }
 
         [Newtonsoft.Json.JsonIgnore]
-        public double Total
-        {
-            get
-            {
-                return f.ConvertToDouble(_Total);
-            }
-            set
-            {
-                _Total = value.ToString();
-            }
-        }
+        public double Total { get; set; }
 
         public double? ZwischenZeit1
         {
             get
             {
-                if (_ZwischenZeit1 == 0.0)
-                    _ZwischenZeit1 = null;
+                if (_zwischenZeit1 == 0.0)
+                    _zwischenZeit1 = null;
 
-                return _ZwischenZeit1;
+                return _zwischenZeit1;
             }
-            set => _ZwischenZeit1 = value;
+            set => _zwischenZeit1 = value;
         }
 
         public double? ZwischenZeit2
         {
             get
             {
-                if (_ZwischenZeit2 == 0.0)
-                    _ZwischenZeit2 = null;
+                if (_zwischenZeit2 == 0.0)
+                    _zwischenZeit2 = null;
 
-                return _ZwischenZeit2;
+                return _zwischenZeit2;
             }
-            set => _ZwischenZeit2 = value;
+            set => _zwischenZeit2 = value;
         }
 
         public double? ZwischenZeit3
         {
             get
             {
-                if (_ZwischenZeit3 == 0.0)
-                    _ZwischenZeit3 = null;
+                if (_zwischenZeit3 == 0.0)
+                    _zwischenZeit3 = null;
 
-                return _ZwischenZeit3;
+                return _zwischenZeit3;
             }
-            set => _ZwischenZeit3 = value;
+            set => _zwischenZeit3 = value;
         }
 
         public double? ZwischenZeit4
         {
             get
             {
-                if (_ZwischenZeit4 == 0.0)
-                    _ZwischenZeit4 = null;
+                if (_zwischenZeit4 == 0.0)
+                    _zwischenZeit4 = null;
 
-                return _ZwischenZeit4;
+                return _zwischenZeit4;
             }
-            set => _ZwischenZeit4 = value;
+            set => _zwischenZeit4 = value;
         }
 
         public double? ZwischenZeit5
         {
             get
             {
-                if (_ZwischenZeit5 == 0.0)
-                    _ZwischenZeit5 = null;
+                if (_zwischenZeit5 == 0.0)
+                    _zwischenZeit5 = null;
 
-                return _ZwischenZeit5;
+                return _zwischenZeit5;
             }
-            set => _ZwischenZeit5 = value;
+            set => _zwischenZeit5 = value;
         }
 
         public double? ZwischenZeit6
         {
             get
             {
-                if (_ZwischenZeit6 == 0.0)
-                    _ZwischenZeit6 = null;
+                if (_zwischenZeit6 == 0.0)
+                    _zwischenZeit6 = null;
 
-                return _ZwischenZeit6;
+                return _zwischenZeit6;
             }
-            set => _ZwischenZeit6 = value;
+            set => _zwischenZeit6 = value;
         }
 
         public double? ZwischenZeit7
         {
             get
             {
-                if (_ZwischenZeit7 == 0.0)
-                    _ZwischenZeit7 = null;
+                if (_zwischenZeit7 == 0.0)
+                    _zwischenZeit7 = null;
 
-                return _ZwischenZeit7;
+                return _zwischenZeit7;
             }
             set
             {
                 if (value == 0)
                     value = null;
 
-                _ZwischenZeit7 = value;
+                _zwischenZeit7 = value;
             }
         }
 

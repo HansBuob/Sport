@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml;
 using twr.common;
 using f = twr.DFunktionen;
@@ -17,7 +18,7 @@ namespace Sport
 
         public override string ToString()
         {
-            return this.StringDatum + " - " + this.Belastung;
+            return $"{this.Datum:yyyyMMdd} - {this.Belastung}";
         }
 
         public bool Serialize(XmlNode dataNode)
@@ -27,7 +28,7 @@ namespace Sport
                 if (dataNode == null)
                     break;
                 if (dataNode.LocalName.ToLower() == "Datum".ToLower())
-                    StringDatum = dataNode.InnerXml;
+                    Datum = dataNode.InnerXml.ToDateTime() ?? DateTime.MinValue;
                 else if (dataNode.LocalName.ToLower() == "Belastung".ToLower())
                     this.Belastung = dataNode.InnerXml.ToDouble();
                 else if (dataNode.LocalName.ToLower() == "Dauer".ToLower())
@@ -51,12 +52,11 @@ namespace Sport
 
         public bool Serialize(object stream)
         {
-            var streamReader = stream as StreamReader;
-            if (streamReader != null)
+            if (stream is StreamReader streamReader)
             {
                 var sr = streamReader;
                 var data = "";
-again:
+            again:
                 data = sr.ReadLine();
                 if (data == null)
                     return false;
@@ -66,7 +66,7 @@ again:
 
                 var str = data + ",";
                 str += ",,,,,,,";
-                this.StringDatum = f.HeadFromList(ref str, ",");
+                this.Datum = f.HeadFromList(ref str, ",").ToDateTime() ?? DateTime.MinValue;
                 this.Gewicht = f.HeadFromList(ref str, ",").ToDouble();
                 this.Belastung = f.HeadFromList(ref str, ",").ToDouble();
                 Dauer = f.HeadFromList(ref str, ",").ToDouble();
@@ -110,12 +110,12 @@ again:
                 */
                 return true;
             }
-            var streamWriter = stream as StreamWriter;
-            if (streamWriter != null)
+
+            if (stream is StreamWriter streamWriter)
             {
                 var sw = streamWriter;
 
-                var line = StringDatum + ",";
+                var line = Datum.ToString("yyyyMMdd") + ",";
                 line += Gewicht + ",";
                 line += this.Belastung + ",";
                 line += Dauer + ",";

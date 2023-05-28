@@ -75,20 +75,20 @@ namespace Sport
             }
         }
 
-        public static double GetZwischenZeit(double zeit1, double zeit2)
-        {
-            if (!TimeSpan.TryParse("00:" + zeit1.ToString("0.00").Replace(".", ":"), out var timeSpan1))
-                return 0.0;
-            if (!TimeSpan.TryParse("00:" + zeit2.ToString("0.00").Replace(".", ":"), out var timeSpan2))
-                return 0.0;
+        //public static double GetZwischenZeit(double zeit1, double zeit2)
+        //{
+        //    if (!TimeSpan.TryParse("00:" + zeit1.ToString("0.00").Replace(".", ":"), out var timeSpan1))
+        //        return 0.0;
+        //    if (!TimeSpan.TryParse("00:" + zeit2.ToString("0.00").Replace(".", ":"), out var timeSpan2))
+        //        return 0.0;
 
-            var timeSpan = timeSpan1 - timeSpan2;
+        //    var timeSpan = timeSpan1 - timeSpan2;
 
-            double d = timeSpan.Minutes;
-            d += ((double)timeSpan.Seconds) / 100;
+        //    double d = timeSpan.Minutes;
+        //    d += ((double)timeSpan.Seconds) / 100;
 
-            return d;// Math.Abs(timeSpan.TotalMinutes);
-        }
+        //    return d;// Math.Abs(timeSpan.TotalMinutes);
+        //}
 
         public bool Serialize(XmlNode dataNode)
         {

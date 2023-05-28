@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Sport.Form;
 using twr;
 using f = twr.DFunktionen;
 
@@ -44,6 +45,8 @@ namespace Sport
 
         public frmMain()
         {
+            //_sportApplication = this;
+
             //
             // Required for Windows Form Designer support
             //
@@ -360,7 +363,14 @@ namespace Sport
             Application.Run(app);
         }
 
-        private Sport _rv = new Sport();
+        //public static frmMain SportApplication()
+        //{
+        //    return _sportApplication;
+        //}
+
+        private static frmMain _sportApplication;
+
+        public static Sport SportInstance = new Sport();
 
         private List<RVDaten> _arrShownData = new List<RVDaten>();
 
@@ -416,15 +426,15 @@ namespace Sport
             //				Settings.DataDirectory=@"D:\Programme\dNET\RVdv\";
 #endif
 
-            _rv.Jahr = Settings.Jahr;
-            _rv.Pfad = Settings.DataDirectory;
-            _rv.Load();
+            SportInstance.Jahr = Settings.Jahr;
+            SportInstance.Pfad = Settings.DataDirectory;
+            SportInstance.Load();
 
-            //			_rv.SaveData();
+            //			SportInstance.SaveData();
 
             sbPanelDatei.Text = Settings.Jahr;
-            //			sbPanelAnzahl.Text="Anzahl Daten: " + _rv.RvDaten.Count.ToString();
-            sbPanelAnzahl.Text = "Anzahl Daten: (" + _rv.RvDaten.Count + "/" + _rv.HtDaten.Count + "/" + _rv.JoDaten.Count + ")";
+            //			sbPanelAnzahl.Text="Anzahl Daten: " + SportInstance.RvDaten.Count.ToString();
+            sbPanelAnzahl.Text = "Anzahl Daten: (" + SportInstance.RvDaten.Count + "/" + SportInstance.HtDaten.Count + "/" + SportInstance.JoDaten.Count + ")";
 
             Work.Visible = false;
             Work.BackColor = Color.Black;
@@ -456,7 +466,7 @@ namespace Sport
             if (_rvGrafik)
             {
                 _arrShownData.Clear();
-                var anzDaten = _rv.RvDaten.Count;
+                var anzDaten = SportInstance.RvDaten.Count;
                 if (anzDaten == 0)
                     return;
 
@@ -484,12 +494,12 @@ namespace Sport
                 //			e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(160,250,160)), 10,10,10,10);
                 //			e.Graphics.FillRectangle(new SolidBrush(Color.Red), 20,10,10,10);
 
-                for (var a = 0; a < _rv.SdDaten.Count; a++)
+                for (var a = 0; a < SportInstance.SdDaten.Count; a++)
                 {
-                    for (var i = 0; i < _rv.RvDaten.Count; i++)
+                    for (var i = 0; i < SportInstance.RvDaten.Count; i++)
                     {
-                        var rvSDDaten = _rv.SdDaten[a];
-                        var rvDaten = _rv.RvDaten[i];
+                        var rvSDDaten = SportInstance.SdDaten[a];
+                        var rvDaten = SportInstance.RvDaten[i];
                         if ((rvSDDaten.Strecke == rvDaten.Strecke) || (rvSDDaten.Rundfahrt.ToLower() == rvDaten.Strecke.ToLower()))
                         {
                             _arrShownData.Add(rvDaten);
@@ -611,9 +621,9 @@ namespace Sport
                 double tKgMin = 200;
                 double tKgMax = 0;
                 var maxdate = new DateTime(1900, 1, 1);
-                for (var i = 0; i < _rv.RvDaten.Count; i++)
+                for (var i = 0; i < SportInstance.RvDaten.Count; i++)
                 {
-                    var rvDaten = _rv.RvDaten[i];
+                    var rvDaten = SportInstance.RvDaten[i];
                     if (!tht.ContainsKey(rvDaten.StringDatum))
                         tht.Add(rvDaten.StringDatum, rvDaten.Gewicht);
                     //				tarr.Add(rvDaten.Datum + "-" + rvDaten.Gewicht.ToString());
@@ -629,11 +639,11 @@ namespace Sport
                     if (rvDaten.Datum > maxdate)
                         maxdate = rvDaten.Datum;
 
-                    //				tarr.Add(_rv)
+                    //				tarr.Add(SportInstance)
                 }
-                for (var i = 0; i < _rv.HtDaten.Count; i++)
+                for (var i = 0; i < SportInstance.HtDaten.Count; i++)
                 {
-                    var rvDaten = _rv.HtDaten[i];
+                    var rvDaten = SportInstance.HtDaten[i];
                     if (rvDaten.Gewicht == 0.0)
                         continue;
 
@@ -650,9 +660,9 @@ namespace Sport
                         maxdate = rvDaten.Datum;
                 }
 
-                for (var i = 0; i < _rv.JoDaten.Count; i++)
+                for (var i = 0; i < SportInstance.JoDaten.Count; i++)
                 {
-                    var rvDaten = _rv.JoDaten[i];
+                    var rvDaten = SportInstance.JoDaten[i];
                     if (rvDaten.Gewicht == 0.0)
                         continue;
 
@@ -904,12 +914,12 @@ namespace Sport
                 dlg.ShowDialog(this);
                 if (dlg.Ok)
                 {
-                    _rv.Jahr = Settings.Jahr;
-                    //					_rv.Pfad=Settings.DataDirectory;
-                    _rv.Load();
+                    SportInstance.Jahr = Settings.Jahr;
+                    //					SportInstance.Pfad=Settings.DataDirectory;
+                    SportInstance.Load();
 
                     sbPanelDatei.Text = Settings.Jahr;
-                    sbPanelAnzahl.Text = "Anzahl Daten: (" + _rv.RvDaten.Count + "/" + _rv.HtDaten.Count + "/" + _rv.JoDaten.Count + ")";
+                    sbPanelAnzahl.Text = "Anzahl Daten: (" + SportInstance.RvDaten.Count + "/" + SportInstance.HtDaten.Count + "/" + SportInstance.JoDaten.Count + ")";
 
                     this.Work.Invalidate();
                 }
@@ -986,7 +996,7 @@ namespace Sport
                     return;
                 }
 
-                var anzDaten = _rv.RvDaten.Count;
+                var anzDaten = SportInstance.RvDaten.Count;
                 if (anzDaten == 0)
                     return;
 
@@ -1003,8 +1013,8 @@ namespace Sport
 
                 var rvDaten = _arrShownData[info];
 
-                var sd = _rv.SDInfo(rvDaten.Strecke);
-                /*			for(int i=0;i<_rv.SdDaten.Count;i++)
+                var sd = SportInstance.SDInfo(rvDaten.Strecke);
+                /*			for(int i=0;i<SportInstance.SdDaten.Count;i++)
                             {
                             }
                 */
@@ -1060,7 +1070,7 @@ namespace Sport
                 var frm = new frmKalender();
                 frm.Owner = this.Owner;
                 frm.MdiParent = this;
-                frm.setRV = _rv;
+                frm.setRV = SportInstance;
                 frm.Show();
             }
 
@@ -1068,28 +1078,24 @@ namespace Sport
 
             if (menuText == "Rennvelo")
             {
-                //var frm = new frmStreckenSortiertPaintProtokoll();
-                //frm.Owner = this.Owner;
-                //frm.MdiParent = this;
-                //frm.setRV = _rv;
-                //frm.Show();
-
-
-                var frm2 = new frmProtokollRennvelo();
-                frm2.Owner = this.Owner;
-                //				frm.init();
-                //				frm.axWebBrowser.Parent=frm.Parent;
-                frm2.MdiParent = this;
-                frm2.setRV = _rv;
-                frm2.Show();
+                var frm = new frmProtokollRennvelo();
+                frm.Owner = this.Owner;
+                frm.MdiParent = this;
+                frm.setRV = SportInstance;
+                frm.Show();
             }
             if (menuText == "Heimtrainer")
             {
-                var frm = new frmProtokollHomeTrainerPaintProtokoll();
-                frm.Owner = this.Owner;
-                frm.MdiParent = this;
-                frm.setRV = _rv;
-                frm.Show();
+                //var frm = new frmProtokollHomeTrainerPaintProtokoll();
+                //frm.Owner = this.Owner;
+                //frm.MdiParent = this;
+                //frm.setRV = SportInstance;
+                //frm.Show();
+
+                var frm2 = new frmProtokollHomeTrainer();
+                frm2.Owner = this.Owner;
+                frm2.MdiParent = this;
+                frm2.Show();
             }
 
             if (menuText == "Joggen")
@@ -1097,24 +1103,29 @@ namespace Sport
                 var frm = new frmProtokollJoggenPaintProtokoll();
                 frm.Owner = this.Owner;
                 frm.MdiParent = this;
-                frm.setRV = _rv;
+                frm.setRV = SportInstance;
                 frm.Show();
+
+                var frm2 = new frmProtokollJoggen();
+                frm2.Owner = this.Owner;
+                frm2.MdiParent = this;
+                frm2.Show();
             }
 
-            if (menuText == "222")
-            {
-                var frm = new frmGProtokoll();
-                frm.Owner = this.Owner;
-                frm.MdiParent = this;
-                frm.Show();
-            }
+            //if (menuText == "222")
+            //{
+            //    var frm = new frmGProtokoll();
+            //    frm.Owner = this.Owner;
+            //    frm.MdiParent = this;
+            //    frm.Show();
+            //}
 
             if (menuText == "Excel-Informationen")
             {
                 var frm = new frmExcelInfoPaintProtokoll();
                 frm.Owner = this.Owner;
                 frm.MdiParent = this;
-                frm.setRV = _rv;
+                frm.setRV = SportInstance;
                 frm.Show();
             }
             if (menuText == "Zwischenzeiten sortiert nach Strecken")
@@ -1124,34 +1135,31 @@ namespace Sport
                 //				frm.init();
                 //				frm.axWebBrowser.Parent=frm.Parent;
                 frm.MdiParent = this;
-                frm.setRV = _rv;
+                frm.setRV = SportInstance;
                 frm.Show();
             }
             if (menuText == "RV-Eingabe")
             {
                 var frm = new frmRVEingabe();
-                frm.setRV = _rv;
+                frm.setRV = SportInstance;
                 frm.ShowDialog(this);
 
-                sbPanelAnzahl.Text = "Anzahl Daten: (" + _rv.RvDaten.Count + "/" + _rv.HtDaten.Count + "/" + _rv.JoDaten.Count + ")";
-
-
-
+                sbPanelAnzahl.Text = "Anzahl Daten: (" + SportInstance.RvDaten.Count + "/" + SportInstance.HtDaten.Count + "/" + SportInstance.JoDaten.Count + ")";
             }
             if (menuText == "HT-Eingabe")
             {
                 var frm = new frmHTEingabe();
-                frm.setRV = _rv;
+                frm.setRV = SportInstance;
                 frm.ShowDialog(this);
-                sbPanelAnzahl.Text = "Anzahl Daten: (" + _rv.RvDaten.Count + "/" + _rv.HtDaten.Count + "/" + _rv.JoDaten.Count + ")";
+                sbPanelAnzahl.Text = "Anzahl Daten: (" + SportInstance.RvDaten.Count + "/" + SportInstance.HtDaten.Count + "/" + SportInstance.JoDaten.Count + ")";
             }
 
             if (menuText == "JO-Eingabe")
             {
                 var frm = new frmJOEingabe();
-                frm.setRV = _rv;
+                frm.setRV = SportInstance;
                 frm.ShowDialog(this);
-                sbPanelAnzahl.Text = "Anzahl Daten: (" + _rv.RvDaten.Count + "/" + _rv.HtDaten.Count + "/" + _rv.JoDaten.Count + ")";
+                sbPanelAnzahl.Text = "Anzahl Daten: (" + SportInstance.RvDaten.Count + "/" + SportInstance.HtDaten.Count + "/" + SportInstance.JoDaten.Count + ")";
             }
         }
 
@@ -1186,7 +1194,7 @@ namespace Sport
                 var frm = new frmExcelInfoPaintProtokoll();
                 frm.Owner = this.Owner;
                 frm.MdiParent = this;
-                frm.setRV = _rv;
+                frm.setRV = SportInstance;
                 frm.Show();
             }
             this.Focus();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -28,6 +29,21 @@ namespace Sport
         {
             var reg = new DRegistry();
             this.Jahr = reg.GetProfileString(DRegistry.TRegistryKey.HKEY_CURRENT_USER, "SOFTWARE\\TWR\\Sport", "Datei", "");
+        }
+
+        public static double GetZwischenZeit(double zeit1, double zeit2)
+        {
+            if (!TimeSpan.TryParse("00:" + zeit1.ToString("0.00").Replace(".", ":"), out var timeSpan1))
+                return 0.0;
+            if (!TimeSpan.TryParse("00:" + zeit2.ToString("0.00").Replace(".", ":"), out var timeSpan2))
+                return 0.0;
+
+            var timeSpan = timeSpan1 - timeSpan2;
+
+            double d = timeSpan.Minutes;
+            d += ((double)timeSpan.Seconds) / 100;
+
+            return d;// Math.Abs(timeSpan.TotalMinutes);
         }
 
         public bool RVBest(string strecke, out double b1, out double w1, out double b2, out double w2

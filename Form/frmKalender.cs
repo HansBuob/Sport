@@ -92,6 +92,7 @@ namespace Sport
                 var _rv = value;
 
                 _ht = new Hashtable();
+
                 for (var i = 0; i < _rv.RvDaten.Count; i++)
                 {
                     var d = _rv.RvDaten[i];
@@ -102,17 +103,6 @@ namespace Sport
                     }
                     _ht.Add(d.StringDatum, "RV - " + d.Gewicht.ToString("F1"));
                 }
-                for (var i = 0; i < _rv.HtDaten.Count; i++)
-                {
-                    var d = _rv.HtDaten[i];
-                    if (_ht.ContainsKey(d.StringDatum))
-                    {
-                        Console.WriteLine("R : doubleentry " + d.StringDatum);
-                        continue;
-                    }
-                    _ht.Add(d.StringDatum, "HT - " + d.Gewicht.ToString("F1"));
-                }
-
                 for (var i = 0; i < _rv.JoDaten.Count; i++)
                 {
                     var d = _rv.JoDaten[i];
@@ -122,6 +112,16 @@ namespace Sport
                         continue;
                     }
                     _ht.Add(d.StringDatum, "JO - " + d.Gewicht.ToString("F1"));
+                }
+                for (var i = 0; i < _rv.HtDaten.Count; i++)
+                {
+                    var d = _rv.HtDaten[i];
+                    if (_ht.ContainsKey(d.StringDatum))
+                    {
+                        Console.WriteLine("R : doubleentry " + d.StringDatum);
+                        continue;
+                    }
+                    _ht.Add(d.StringDatum, "HT - " + d.Gewicht.ToString("F1"));
                 }
             }
         }

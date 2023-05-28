@@ -5,7 +5,7 @@ namespace Sport.Common
 {
     public static class DataGridTableStyleExtension
     {
-        public static DataColumn AddColumn(this DataGridTableStyle dataGridTableStyle, string columnTitle, int width = 75)
+        public static DataColumn AddColumn(this DataGridTableStyle dataGridTableStyle, string columnTitle, int width = 75, HorizontalAlignment horizontalAlignment = HorizontalAlignment.Left)
         {
             var textBoxColumn = new DataGridTextBoxColumn
             {
@@ -14,7 +14,13 @@ namespace Sport.Common
                 Format = "",
                 FormatInfo = null,
                 Width = width,
-                NullText = ""
+                NullText = "",
+                Alignment = horizontalAlignment,
+                //TextBox =
+                //{
+                //    TextAlign = horizontalAlignment,
+
+                //}
             };
             dataGridTableStyle.GridColumnStyles.Add(textBoxColumn);
             if (dataGridTableStyle.DataGrid is DataGrid dataGrid)

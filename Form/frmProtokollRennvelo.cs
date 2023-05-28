@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Linq;
+using System.Windows.Forms;
 using twr;
 using Sport.Common;
 
@@ -109,7 +110,7 @@ namespace Sport
             this.dataGrid.Location = new System.Drawing.Point(0, 0);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.ReadOnly = true;
-            this.dataGrid.Size = new System.Drawing.Size(1184, 461);
+            this.dataGrid.Size = new System.Drawing.Size(1347, 461);
             this.dataGrid.TabIndex = 0;
             this.dataGrid.TableStyles.AddRange(new System.Windows.Forms.DataGridTableStyle[] {
             this.dataGridTableStyle});
@@ -243,7 +244,7 @@ namespace Sport
             // frmProtokollRennvelo
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(1184, 461);
+            this.ClientSize = new System.Drawing.Size(1347, 461);
             this.Controls.Add(this.dataGrid);
             this.Name = "frmProtokollRennvelo";
             this.Text = "Protokoll";
@@ -269,25 +270,27 @@ namespace Sport
             }
         }
 
-        private DataColumn AddColumn(string columnTitle, int width = 75)
-        {
-            var textBoxColumn = new System.Windows.Forms.DataGridTextBoxColumn();
-            textBoxColumn.HeaderText = columnTitle;
-            textBoxColumn.MappingName = textBoxColumn.HeaderText;
+        //private DataColumn AddColumn(string columnTitle, int width = 75)
+        //{
+        //    var textBoxColumn = new System.Windows.Forms.DataGridTextBoxColumn();
+        //    textBoxColumn.HeaderText = columnTitle;
+        //    textBoxColumn.MappingName = textBoxColumn.HeaderText;
 
-            textBoxColumn.Format = "";
-            textBoxColumn.FormatInfo = null;
-            textBoxColumn.Width = width;
+        //    textBoxColumn.Format = "";
+        //    textBoxColumn.FormatInfo = null;
+        //    textBoxColumn.Width = width;
 
-            textBoxColumn.NullText = "";
-            dataGridTableStyle.GridColumnStyles.Add(textBoxColumn);
-            var column = _DataTable.Columns.Add(columnTitle);
+        //    textBoxColumn.NullText = "";
+        //    dataGridTableStyle.GridColumnStyles.Add(textBoxColumn);
+        //    var column = _DataTable.Columns.Add(columnTitle);
 
-            return column;
-        }
+        //    return column;
+        //}
 
         private void frmProtokoll_Load(object sender, System.EventArgs e)
         {
+            this.Text = "Rennvelo-Info";
+            this.Text += " (" + Settings.Jahr + ")";
             //lblInfo.Text = "Datum und berechnete Daten";
             //f.DoXPStyle(this);
             //OnResize(null, null);
@@ -309,25 +312,22 @@ namespace Sport
             dataGrid.TableStyles[0].SelectionForeColor = dataGrid.SelectionForeColor;
             dataGrid.DataSource = _DataTable;
 
+            var columnDatum = dataGridTableStyle.AddColumn("Datum");
             var columnStrecke = dataGridTableStyle.AddColumn("Strecke", 150);
-
-
-            //var columnStrecke = AddColumn("Strecke", 150);
-            var columnDatum = AddColumn("Datum");
-            var columnDauer = AddColumn("Dauer");
-            var columnZwischenZeit1 = AddColumn("ZwischenZeit1", 100);
-            var columnZwischenZeit2 = AddColumn("ZwischenZeit2", 100);
-            var columnZwischenZeit3 = AddColumn("ZwischenZeit3", 100);
-            var columnZwischenZeit4 = AddColumn("ZwischenZeit4", 100);
-            var columnZwischenZeit5 = AddColumn("ZwischenZeit5", 100);
-            var columnZwischenZeit6 = AddColumn("ZwischenZeit6", 100);
-            var columnZwischenZeit7 = AddColumn("ZwischenZeit7", 100);
-            var columnHoechst = AddColumn("Hoechst");
-            var columnARS = AddColumn("ARS");
-            var columnKcal = AddColumn("Kcal");
-            var columnDurchschnitt = AddColumn("Durchschnitt");
-            var columnGewicht = AddColumn("Gewicht");
-            var columnBemerkung = AddColumn("Bemerkung", 350);
+            var columnDauer = dataGridTableStyle.AddColumn("Dauer", horizontalAlignment: HorizontalAlignment.Right);
+            var columnZwischenZeit1 = dataGridTableStyle.AddColumn("ZwischenZeit1", 100);
+            var columnZwischenZeit2 = dataGridTableStyle.AddColumn("ZwischenZeit2", 100);
+            var columnZwischenZeit3 = dataGridTableStyle.AddColumn("ZwischenZeit3", 100);
+            var columnZwischenZeit4 = dataGridTableStyle.AddColumn("ZwischenZeit4", 100);
+            var columnZwischenZeit5 = dataGridTableStyle.AddColumn("ZwischenZeit5", 100);
+            var columnZwischenZeit6 = dataGridTableStyle.AddColumn("ZwischenZeit6", 100);
+            var columnZwischenZeit7 = dataGridTableStyle.AddColumn("ZwischenZeit7", 100);
+            var columnHoechst = dataGridTableStyle.AddColumn("Hoechst", horizontalAlignment: HorizontalAlignment.Right);
+            var columnARS = dataGridTableStyle.AddColumn("ARS", horizontalAlignment: HorizontalAlignment.Right);
+            var columnKcal = dataGridTableStyle.AddColumn("Kcal", horizontalAlignment: HorizontalAlignment.Right);
+            var columnDurchschnitt = dataGridTableStyle.AddColumn("Durchschnitt", horizontalAlignment: HorizontalAlignment.Right);
+            var columnGewicht = dataGridTableStyle.AddColumn("Gewicht", horizontalAlignment: HorizontalAlignment.Right);
+            var columnBemerkung = dataGridTableStyle.AddColumn("Bemerkung", 350);
 
 
 
@@ -337,23 +337,23 @@ namespace Sport
 
             for (var index = 0; index < rvDaten.Count; index++)
             {
-                if (previousStrecke != rvDaten[index].Strecke)
-                {
-                    //if(previousStrecke != "")
-                    //    _DataTable.Rows.Add(_DataTable.NewRow());
+                //if (previousStrecke != rvDaten[index].Strecke)
+                //{
+                //    //if(previousStrecke != "")
+                //    //    _DataTable.Rows.Add(_DataTable.NewRow());
 
-                    //var newStreckeRow = _DataTable.NewRow();
-                    //_DataTable.Rows.Add(newStreckeRow);
-                    //newStreckeRow[columnDatum] = rvDaten[index].Strecke;
+                //    //var newStreckeRow = _DataTable.NewRow();
+                //    //_DataTable.Rows.Add(newStreckeRow);
+                //    //newStreckeRow[columnDatum] = rvDaten[index].Strecke;
 
-                    previousStrecke = rvDaten[index].Strecke;
-                }
+                //    previousStrecke = rvDaten[index].Strecke;
+                //}
 
                 var newRow = _DataTable.NewRow();
                 _DataTable.Rows.Add(newRow);
 
                 newRow[columnStrecke] = rvDaten[index].Strecke;
-                newRow[columnDatum] = rvDaten[index].Datum.ToString("dd.MM.yyyy");
+                newRow[columnDatum] = rvDaten[index].Datum.ToString("yyyy.MM.dd");
                 newRow[columnDauer] = rvDaten[index].Dauer.ToString("F2");
                 newRow[columnHoechst] = rvDaten[index].Hoechst.ToString("F1");
                 newRow[columnARS] = rvDaten[index].ARS;

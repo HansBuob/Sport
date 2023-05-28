@@ -121,6 +121,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DataGridTableStyleExtension.cs" />
+    <Compile Include="Form\frmProtokollHomeTrainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmProtokollHomeTrainer.Designer.cs">
+      <DependentUpon>frmProtokollHomeTrainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmProtokollJoggen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmProtokollJoggen.Designer.cs">
+      <DependentUpon>frmProtokollJoggen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\frmProtokollRennvelo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +220,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPaintProtokoll\frmProtokollJoggenPaintProtokoll.resx">
       <DependentUpon>frmProtokollJoggenPaintProtokoll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmProtokollHomeTrainer.resx">
+      <DependentUpon>frmProtokollHomeTrainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmProtokollJoggen.resx">
+      <DependentUpon>frmProtokollJoggen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmProtokollOhneGrid.resx">
       <DependentUpon>frmProtokollOhneGrid.cs</DependentUpon>

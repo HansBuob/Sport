@@ -12,7 +12,7 @@ namespace Sport
 
         public double Belastung { get; set; }
         public double Distanz { get; set; }
-        public double KJoul { get; set; }
+        public int KJoul { get; set; }
 
         #endregion
 
@@ -36,7 +36,7 @@ namespace Sport
                 else if (dataNode.LocalName.ToLower() == "Distanz".ToLower())
                     this.Distanz = dataNode.InnerXml.ToDouble();
                 else if (dataNode.LocalName.ToLower() == "KJoul".ToLower())
-                    this.KJoul = dataNode.InnerXml.ToDouble();
+                    this.KJoul = dataNode.InnerXml.ToInt(0);
                 else if (dataNode.LocalName.ToLower() == "Gewicht".ToLower())
                     this.Gewicht = dataNode.InnerXml.ToDouble();//f.ConvertToDouble(dataNode.InnerXml);
                 else
@@ -55,9 +55,8 @@ namespace Sport
             if (stream is StreamReader streamReader)
             {
                 var sr = streamReader;
-                var data = "";
             again:
-                data = sr.ReadLine();
+                var data = sr.ReadLine();
                 if (data == null)
                     return false;
                 if (data == "")
@@ -77,7 +76,7 @@ namespace Sport
                 f.HeadFromList(ref str, ",");
                 this.Distanz = f.HeadFromList(ref str, ",").ToDouble();
                 f.HeadFromList(ref str, ",");
-                this.KJoul = f.HeadFromList(ref str, ",").ToDouble();
+                this.KJoul = f.HeadFromList(ref str, ",").ToInt(0);
 
                 /*
                                 _Rundfahrt=f.HeadFromList(ref str,",");

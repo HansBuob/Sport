@@ -91,7 +91,7 @@ namespace Sport
                 if (jo.Position1 != 0.0)
                     SetData(23, i, jo.Position1, 2);
                 if (jo.Position2 != 0.0)
-                    SetData(23 + 6, i, JoggenDaten.GetZwischenZeit(jo.Position2, jo.Position1), 2, Color.Beige);
+                    SetData(23 + 6, i, Sport.GetZwischenZeit(jo.Position2, jo.Position1), 2, Color.Beige);
 
                 //string ss=jo.ZZ1;
 
@@ -110,7 +110,7 @@ namespace Sport
                 if (jo.Position2 != 0.0)
                     SetData(37, i, jo.Position2, 2);
                 if (jo.Position3 != 0.0)
-                    SetData(37 + 6, i, JoggenDaten.GetZwischenZeit(jo.Position3, jo.Position2), 2, Color.Beige);
+                    SetData(37 + 6, i, Sport.GetZwischenZeit(jo.Position3, jo.Position2), 2, Color.Beige);
 
                 //if(jo.W2!=0.0)
                 //{
@@ -128,7 +128,7 @@ namespace Sport
                 if (jo.Position3 != 0.0)
                     SetData(51, i, jo.Position3, 2);
                 if (jo.Position4 != 0.0)
-                    SetData(51 + 6, i, JoggenDaten.GetZwischenZeit(jo.Position4, jo.Position3), 2, Color.Beige);
+                    SetData(51 + 6, i, Sport.GetZwischenZeit(jo.Position4, jo.Position3), 2, Color.Beige);
 
                 //				if(jo.W3!=0.0)
                 //				{
@@ -145,7 +145,7 @@ namespace Sport
                 if (jo.Position4 != 0.0)
                     SetData(65, i, jo.Position4, 2);
                 if (jo.Position5 != 0.0)
-                    SetData(65 + 6, i, JoggenDaten.GetZwischenZeit(jo.Position5, jo.Position4), 2, Color.Beige);
+                    SetData(65 + 6, i, Sport.GetZwischenZeit(jo.Position5, jo.Position4), 2, Color.Beige);
 
                 //				if(jo.W4!=0.0)
                 //				{
@@ -156,7 +156,7 @@ namespace Sport
                 if (jo.Position5 != 0.0)
                     SetData(79, i, jo.Position5, 2);
                 if (jo.Position6 != 0.0)
-                    SetData(79 + 6, i, JoggenDaten.GetZwischenZeit(jo.Position6, jo.Position5), 2, Color.Beige);
+                    SetData(79 + 6, i, Sport.GetZwischenZeit(jo.Position6, jo.Position5), 2, Color.Beige);
 
                 if (jo.Position6 != 0.0)
                     SetData(93, i, jo.Position6, 2);

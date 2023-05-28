@@ -322,7 +322,7 @@ namespace Sport
             //data.PulsschlagVor=f.ConvertToDouble(tbPulsschlagV.Text);
             //data.PulsschlagNach=f.ConvertToDouble(tbPulsschlagN.Text);
             data.Distanz = f.ConvertToDouble(tbDistanz.Text);
-            data.KJoul = f.ConvertToDouble(tbKJoul.Text);
+            data.KJoul = f.ConvertToInt(tbKJoul.Text);
             data.Gewicht = tbGewicht.Text.ToDouble();
             _rv.HtDaten.Add(data);
 
